@@ -3,7 +3,7 @@
 
 ## Project Description
 
-The following application was built for the sole purpose of meeting the requirements for for Spotify's Internship. The initial front-end and back-end structure of this application was build using the following online article  ![Here](https://medium.freecodecamp.org/how-to-make-create-react-app-work-with-a-node-backend-api-7c5c48acb1b0).
+The following application was built for the sole purpose of meeting the requirements for for Spotify's Internship.
 
 ![Final Version](https://github.com/ktriviso/calendar)
 ![Hosted Version]()
@@ -53,6 +53,9 @@ Events (Optional API. Not required; bonus points available)
 | NPM             | Package manager for Javascript                                       |
 | Yarn            | Package manager with fast, reliable and secure dependency management |
 | React           | Flexible JavaScript library for building user interfaces             |
+| Moment.js       | JavaScript library for manipulating and parsing dates and time       |
+
+Special thanks to TEK Academy Labs. The dynamic built for the calendar UI was built in part with their ![toutorial](https://www.youtube.com/watch?v=9U0uTNfY1UA). 
 
 ## Issues and Resolutions
 
