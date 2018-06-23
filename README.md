@@ -56,6 +56,8 @@ Events (Optional API. Not required; bonus points available)
 | React           | Flexible JavaScript library for building user interfaces             |
 | Moment.js       | JavaScript library for manipulating and parsing dates and time       |
 
+Special thanks to TEK Academy Labs. The dynamic built for the calendar UI was built in part with their ![toutorial](https://www.youtube.com/watch?v=9U0uTNfY1UA).
+
 ## Issues and Resolutions
 
 ERROR:

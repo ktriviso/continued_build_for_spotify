@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment'
+import EventModal from './EventModal'
+import Day from './Day'
 import './calendar.css';
 
 export default class Calendar extends Component {
@@ -9,7 +11,8 @@ export default class Calendar extends Component {
       date: moment(),
       weekdays: moment.weekdays(),
       weekdaysShort: moment.weekdaysShort(),
-      months: moment.months()
+      months: moment.months(),
+      isModalOpen: false
     }
   }
 
@@ -39,6 +42,19 @@ export default class Calendar extends Component {
     return firstDay
   }
 
+  openModal = () => {
+    this.setState({ isModalOpen: true})
+  }
+
+  closeModal = () => {
+    this.setState({ isModalOpen: false })
+  }
+
+  appendForm = (day) => {
+    console.log(day)
+    this.openModal()
+  }
+
   render() {
 
     // key is i * 50 because there was a key duplication error
@@ -58,9 +74,7 @@ export default class Calendar extends Component {
     for(let i = 1; i < this.getDaysInMonth(); i++){
       let className = (i === this.getCurrentDay() ? 'day current-day' : 'day')
       daysInMonth.push(
-        <td key={i} className={className}>
-          <span>{i}</span>
-        </td>
+        <Day className={className} key={i} index={i} appendForm={this.appendForm}/>
       )
     }
 
@@ -102,11 +116,17 @@ export default class Calendar extends Component {
       )
     })
 
+    const conditionalModal = this.state.isModalOpen ? <EventModal onClose={this.closeModal}/> : null
+
     return (
       <div className='calendar-container'>
+      {conditionalModal}
         <table className='calendar'>
           <thead>
             <tr className='calendar-header'>
+              <td colSpan='5'>
+                {this.getCurrentMonth()}
+              </td>
             </tr>
           </thead>
           <tbody>
