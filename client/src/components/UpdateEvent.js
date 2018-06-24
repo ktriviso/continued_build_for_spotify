@@ -14,7 +14,6 @@ export default class UpdateEvent extends Component {
   }
 
   updateEvent = (e) => {
-    console.log('im clicked')
     e.preventDefault();
     fetch(`api/${this.state.currentEvent.event_id}`, {
       method: 'PUT',
