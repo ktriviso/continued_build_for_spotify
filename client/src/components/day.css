@@ -1,0 +1,32 @@
+ul, li{
+  list-style: none;
+  list-style-type: none;
+  height: 50%;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+li {
+  background-color: #ADD8E6;
+  margin: 2px;
+  color: white;
+}
+
+ul {
+  overflow: scroll;
+}
+
+.icon {
+  width: 50%;
+  position: absolute;
+  color: rgba(0,0,0,.2);
+  text-align: right;
+  line-height: 1.9rem;
+  padding-right: .2rem;
+  font-size: .6rem;
+}

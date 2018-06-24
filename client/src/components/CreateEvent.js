@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './eventModal.css';
+import './createEvent.css';
 
-export default class EventModal extends Component {
+export default class CreateEvent extends Component {
 
   constructor(props){
     super(props)
@@ -9,24 +9,28 @@ export default class EventModal extends Component {
       name: '',
       description: '',
       start: '',
-      end: ''
+      end: '',
+      date: this.props.currentDay
     }
+    this.createEvent = this.createEvent.bind(this)
   }
 
   createEvent = (e) => {
     e.preventDefault()
-        // e.preventDefault();
-        // fetch('/auth/register', {
-        //     method: 'POST',
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify({
-        //         'username': this.state.username,
-        //         'password': this.state.password,
-        //     })
-        // })
-        // .then(() => {
-        //     this.props.history.push(`/login`)
-        // });
+    fetch('api', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            'event_name': this.state.name,
+            'event_description': this.state.description,
+            'start_time': this.state.start,
+            'end_time': this.state.end,
+            'event_date': this.state.date
+        })
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+    this.props.onClose()
   }
 
   name = (e) => {
@@ -46,13 +50,11 @@ export default class EventModal extends Component {
   }
 
   render() {
-    const { onClose, formattedDate } = this.props;
-
+    const { formattedDate } = this.props;
 
     return (
-      <div className='EventModal'>
+      <div className='formModal'>
         {formattedDate}
-        <button onClick={onClose}>X</button>
         <form onSubmit={this.createEvent}>
           <input name="name" type="text" placeholder="name"
           onChange={this.name}/>
@@ -66,8 +68,7 @@ export default class EventModal extends Component {
           <input name="end" type="text" placeholder="end"
           onChange={this.end}/>
           <br/>
-          <button type="submit" onClick={onClose}>Save Event</button>
-
+          <button type="submit">Save Event</button>
         </form>
       </div>
     );

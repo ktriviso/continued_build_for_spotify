@@ -3,6 +3,13 @@
   margin: 0;
 }
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 .calendar-container {
   border: 2px solid black;
 }
@@ -27,7 +34,8 @@
 .day,
 .emptySlot {
   border: 1px solid rgba(0,0,0,.2);
-  height: 100px;
+  width: 14%;
+  height: 100px!important;
 }
 
 .weekdays {
@@ -38,28 +46,31 @@
 
 .day {
   font-size: 0.8em;
-  width: 24px;
-  height: 24px;
   line-height: 24px;
   text-align: center;
-  height: 100px;
   position: relative;
+  overflow: hidden;
 }
 
 .day span:first-of-type {
   position: absolute;
   top: 0;
   right: 0;
+  text-align: right;
   padding-right: 5px;
+  width: 100%;
 }
 
 .day span:last-of-type {
   position: absolute;
   bottom: 0;
   left: 0;
+  text-align: left;
   padding-left: 5px;
   color: rgba(0,0,0,.2);
+  width: 50%;
 }
+
 .current-day {
   background-color: #4284;
   color: white;

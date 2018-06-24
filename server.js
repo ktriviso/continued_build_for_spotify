@@ -15,6 +15,6 @@ app.use(express.static(path.join(__dirname, 'dist')));
 //   res.send({ express: 'Hello From Express' });
 // });
 
-app.use('/', router)
+app.use('/api', router)
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

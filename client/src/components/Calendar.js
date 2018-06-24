@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import moment from 'moment'
-import EventModal from './EventModal'
 import Day from './Day'
 import './calendar.css';
 
@@ -10,9 +9,22 @@ export default class Calendar extends Component {
     this.state = {
       weekdays: moment.weekdays(),
       weekdaysShort: moment.weekdaysShort(),
-      months: moment.months(),
-      isModalOpen: false
+      months: moment.months()
     }
+  }
+
+  componentDidMount(){
+    fetch(`api`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      this.setState({
+          eventsFromDatabase: data
+      })
+    })
+    .catch((err) => console.log(err))
   }
 
   getCurrentYear = () => {
@@ -41,21 +53,6 @@ export default class Calendar extends Component {
     return firstDay
   }
 
-  openModal = () => {
-    this.setState({ isModalOpen: true})
-  }
-
-  closeModal = () => {
-    this.setState({ isModalOpen: false })
-  }
-
-  appendForm = (day) => {
-    this.setState({
-      currentDay: day
-    })
-    this.openModal()
-  }
-
   render() {
 
     // key is i * 50 because there was a key duplication error
@@ -73,13 +70,21 @@ export default class Calendar extends Component {
 
     let daysInMonth = []
     for(let i = 1; i < this.getDaysInMonth(); i++){
-      // console.log(this.getCurrentDay())
-      console.log(this.getDaysInMonth())
-      // console.log(i)
       let className = i === this.getCurrentDay() ? 'day current-day' : 'day'
-      daysInMonth.push(
-        <Day className={className} key={i} index={i} appendForm={this.appendForm}/>
-      )
+      if(this.state.eventsFromDatabase){
+        let dayEvents = this.state.eventsFromDatabase.filter((eve) => {
+          return eve.event_date === i
+        })
+        daysInMonth.push(
+          <Day className={className} key={i} index={i} appendForm={this.appendForm} eventsFromDatabase={dayEvents}/>
+        )
+      } else {
+        daysInMonth.push(
+          <Day className={className} key={i} index={i} appendForm={this.appendForm} eventsFromDatabase={null}/>
+        )
+      }
+
+
     }
 
     // will log how many spaces the month needs for valid dates
@@ -120,16 +125,8 @@ export default class Calendar extends Component {
       )
     })
 
-    const conditionalModal = this.state.isModalOpen ?
-    <EventModal
-      currentDay={this.state.currentDay}
-      onClose={this.closeModal}
-      formattedDate={`${moment().format('MMMM')} ${this.state.currentDay}, ${moment().format('Y')}`}
-    /> : null
-
     return (
       <div className='calendar-container'>
-      {conditionalModal}
         <table className='calendar'>
           <thead>
             <tr className='calendar-header'>
