@@ -28,8 +28,9 @@ module.exports = {
   },
 
   updateEvent(req, res, next) {
-    console.log(req.body.event_id)
-    db.update(req.body.event_id)
+    console.log(req.body)
+    req.body.event_id = req.params.event_id
+    db.update(req.body)
     .then(data => {
       next();
     })

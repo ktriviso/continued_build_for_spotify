@@ -17,18 +17,18 @@ module.exports = {
     `)
   },
 
-  update(event_id) {
+  update(calendar_event) {
     return db.one(`
       UPDATE event
       SET
       event_name = $/event_name/,
-      event_description = $/event_description/
-      start_time = $/start_time/
-      end_time = $/end_time/
+      event_description = $/event_description/,
+      start_time = $/start_time/,
+      end_time = $/end_time/,
       event_date = $/event_date/
       WHERE event_id = $/event_id/
       RETURNING *
-    `, event_id);
+    `, calendar_event);
   },
 
   // call back all events

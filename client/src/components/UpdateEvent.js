@@ -14,6 +14,7 @@ export default class UpdateEvent extends Component {
   }
 
   updateEvent = (e) => {
+    console.log(this.state.date)
     e.preventDefault();
     fetch(`api/${this.state.currentEvent.event_id}`, {
       method: 'PUT',
@@ -23,7 +24,7 @@ export default class UpdateEvent extends Component {
         'event_description': this.state.description,
         'start_time': this.state.start,
         'end_time': this.state.end,
-        'event_date': this.state.date
+        'event_date': this.props.currentEvent.event_id
       })
     })
     .then(res => console.log(res))
