@@ -8,19 +8,15 @@ export default class Day extends Component {
     }
   }
 
-  componentDidMount(){
-    console.log(this.props)
-  }
-
   handleClick = () => {
-    this.props.appendForm(this.state)
+    this.props.appendForm(this.state.day)
   }
 
   render() {
-
     return (
-      <td key={this.props.index} className={this.props.className} onClick={this.handleClick}>
+      <td key={this.props.index} className={this.props.className}>
         <span>{this.props.index}</span>
+        <span onClick={this.handleClick}>+</span>
         <ul></ul>
       </td>
     );

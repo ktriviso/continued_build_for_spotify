@@ -8,7 +8,6 @@ export default class Calendar extends Component {
   constructor(props){
     super(props);
     this.state = {
-      date: moment(),
       weekdays: moment.weekdays(),
       weekdaysShort: moment.weekdaysShort(),
       months: moment.months(),
@@ -17,27 +16,27 @@ export default class Calendar extends Component {
   }
 
   getCurrentYear = () => {
-    return this.state.date.format('Y')
+    return moment().format('Y')
   }
 
   getCurrentMonth = () => {
-    return this.state.date.format('MMMM')
+    return moment().format('MMMM')
   }
 
   getDaysInMonth = () => {
-    return this.state.date.daysInMonth()
+    return moment().daysInMonth()
   }
 
   getCurrentDate = () => {
-    return this.state.date.get('date')
+    return moment().get('date')
   }
 
   getCurrentDay  = () => {
-    return this.state.date.get('D')
+    return moment().get('D')
   }
 
   firstDayOfMonth = () => {
-    let date = this.state.date
+    let date = moment()
     let firstDay = moment(date).startOf('month').format('d')
     return firstDay
   }
@@ -51,7 +50,9 @@ export default class Calendar extends Component {
   }
 
   appendForm = (day) => {
-    console.log(day)
+    this.setState({
+      currentDay: day
+    })
     this.openModal()
   }
 
@@ -72,7 +73,10 @@ export default class Calendar extends Component {
 
     let daysInMonth = []
     for(let i = 1; i < this.getDaysInMonth(); i++){
-      let className = (i === this.getCurrentDay() ? 'day current-day' : 'day')
+      // console.log(this.getCurrentDay())
+      console.log(this.getDaysInMonth())
+      // console.log(i)
+      let className = i === this.getCurrentDay() ? 'day current-day' : 'day'
       daysInMonth.push(
         <Day className={className} key={i} index={i} appendForm={this.appendForm}/>
       )
@@ -83,7 +87,7 @@ export default class Calendar extends Component {
 
     let weekdays = this.state.weekdaysShort.map((day) => {
       return (
-        <td key={day} className="week-day">{day}</td>
+        <td key={day}>{day}</td>
       )
     })
 
@@ -116,7 +120,12 @@ export default class Calendar extends Component {
       )
     })
 
-    const conditionalModal = this.state.isModalOpen ? <EventModal onClose={this.closeModal}/> : null
+    const conditionalModal = this.state.isModalOpen ?
+    <EventModal
+      currentDay={this.state.currentDay}
+      onClose={this.closeModal}
+      formattedDate={`${moment().format('MMMM')} ${this.state.currentDay}, ${moment().format('Y')}`}
+    /> : null
 
     return (
       <div className='calendar-container'>
@@ -124,13 +133,13 @@ export default class Calendar extends Component {
         <table className='calendar'>
           <thead>
             <tr className='calendar-header'>
-              <td colSpan='5'>
+              <td colSpan='7'>
                 {this.getCurrentMonth()}
               </td>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr className='weekdays'>
               {weekdays}
             </tr>
             {elements}
