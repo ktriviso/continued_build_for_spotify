@@ -31,8 +31,11 @@ module.exports = {
     `, calendar_event);
   },
 
-  // call back all events
-  // edit event
-  // delete event
-  // show one
+  deleteEvent(event_id){
+    return db.none(`
+      DELETE FROM event
+      WHERE event_id = $1
+    `, event_id)
+  }
+
 }

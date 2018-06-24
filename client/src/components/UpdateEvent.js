@@ -13,6 +13,12 @@ export default class UpdateEvent extends Component {
     }
   }
 
+  componentDidMount(){
+    this.setState({
+      currentEvent: this.props.currentEvent
+    })
+  }
+
   updateEvent = (e) => {
     e.preventDefault();
     fetch(`api/${this.state.currentEvent.event_id}`, {
@@ -25,6 +31,14 @@ export default class UpdateEvent extends Component {
         'end_time': this.state.end,
         'event_date': this.props.currentEvent.event_id
       })
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
+
+  removeEvent = () => {
+    fetch(`api/${this.state.currentEvent.event_id}`, {
+      method: 'DELETE'
     })
     .then(res => console.log(res))
     .catch(err => console.log(err))
@@ -50,12 +64,6 @@ export default class UpdateEvent extends Component {
     this.setState({ end: e.target.value })
   }
 
-  componentDidMount(){
-    this.setState({
-      currentEvent: this.props.currentEvent
-    })
-  }
-
   render() {
     const { onClose } = this.props
 
@@ -77,6 +85,7 @@ export default class UpdateEvent extends Component {
         <button type="submit">Update Event</button>
       </form>
       <button onClick={onClose}>X</button>
+      <button onClick={this.removeEvent}>Trash</button>
       </div>
     );
   }

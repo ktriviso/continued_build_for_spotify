@@ -12,6 +12,12 @@ module.exports = {
       });
   },
 
+  deleteEvent(req, res, next) {
+    db.deleteEvent(req.params.event_id)
+      .then(() => next())
+      .catch(err => next(err));
+  },
+
   async getAllEvents(req, res, next) {
     const events = await db.returnAllEvents(req.body).then(data => data)
     .catch(err => {

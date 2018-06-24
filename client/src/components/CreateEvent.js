@@ -49,7 +49,7 @@ export default class CreateEvent extends Component {
   }
 
   render() {
-    const { formattedDate } = this.props;
+    const { formattedDate, onClose } = this.props;
 
     return (
       <div className='formModal'>
@@ -69,6 +69,7 @@ export default class CreateEvent extends Component {
           <br/>
           <button type="submit">Save Event</button>
         </form>
+        <button onClick={onClose}>X</button>
       </div>
     );
   }
