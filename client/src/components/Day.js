@@ -21,8 +21,8 @@ export default class Day extends Component {
   viewEvent = (e) => {
     e.preventDefault()
     let targetEvent = this.state.calendar_event.find((eve) => {
-      // radix err: set the defualt to 8 https://stackoverflow.com/questions/7818903/jslint-says-missing-radix-parameter-what-should-i-do
-      if(parseInt(e.target.getAttribute('event_id'), 8) === eve.event_id){
+      // radix err: set the defualt to 10 https://stackoverflow.com/questions/7818903/jslint-says-missing-radix-parameter-what-should-i-do
+      if(parseInt(e.target.getAttribute('event_id'), 10) === eve.event_id){
         return eve
       }
       return null
@@ -54,7 +54,6 @@ export default class Day extends Component {
   }
 
   render() {
-
     const conditionalUpdateEvent = this.state.isUpdateEventOpen ?
     <UpdateEvent
       onClose={this.closeUpdateEvent}

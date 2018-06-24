@@ -30,7 +30,6 @@ export default class CreateEvent extends Component {
     })
     .then(res => console.log(res))
     .catch(err => console.log(err))
-    this.props.onClose()
   }
 
   name = (e) => {

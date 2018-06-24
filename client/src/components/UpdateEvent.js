@@ -14,7 +14,6 @@ export default class UpdateEvent extends Component {
   }
 
   updateEvent = (e) => {
-    console.log(this.state.date)
     e.preventDefault();
     fetch(`api/${this.state.currentEvent.event_id}`, {
       method: 'PUT',
@@ -32,23 +31,23 @@ export default class UpdateEvent extends Component {
   }
 
   name = (e) => {
-    const value = e.target.value ? e.target.value : e.target.getAttribute('placeholder')
-    this.setState({ name: value })
+    // const value = e.target.value ? e.target.value : e.target.getAttribute('placeholder')
+    this.setState({ name: e.target.value })
   }
 
   description = (e) => {
-    const value = e.target.value ? e.target.value : e.target.getAttribute('placeholder')
-    this.setState({ description: value })
+    // const value = e.target.value ? e.target.value : e.target.getAttribute('placeholder')
+    this.setState({ description: e.target.value })
   }
 
   start = (e) => {
-    const value = e.target.value ? e.target.value : e.target.getAttribute('placeholder')
-    this.setState({ start: value })
+    // const value = e.target.value ? e.target.value : e.target.getAttribute('placeholder')
+    this.setState({ start: e.target.value })
   }
 
   end = (e) => {
-    const value = e.target.value ? e.target.value : e.target.getAttribute('placeholder')
-    this.setState({ end: value })
+    // const value = e.target.value ? e.target.value : e.target.getAttribute('placeholder')
+    this.setState({ end: e.target.value })
   }
 
   componentDidMount(){

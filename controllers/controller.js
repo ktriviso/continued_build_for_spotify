@@ -21,34 +21,22 @@ module.exports = {
     if(events){
       res.send(events)
       next();
-    }
-    else {
+    } else {
       res.send('err')
     }
   },
 
-  updateEvent(req, res, next) {
-    console.log(req.body)
+  async updateEvent(req, res, next) {
     req.body.event_id = req.params.event_id
-    db.update(req.body)
-    .then(data => {
-      next();
-    })
+    const updatedEvent = await db.update(req.body).then(data => data)
     .catch(err => next(err));
+
+    if(updatedEvent){
+      res.send(updatedEvent)
+      next();
+    } else {
+      res.send('err')
+    }
   }
-  //
-  // async update(req, res, next) {
-  //   console.log(req.body.event_id)
-  //   const updatedEvent = await db.update(req.body.event_id).then(data => data)
-  //   .catch(err => {
-  //     next(err)
-  //   });
-  //
-  //   if(updatedEvent){
-  //     res.send(updatedEvent)
-  //     nect();
-  //   } else {
-  //     res.send('err')
-  //   }
-  // }
+
 }
