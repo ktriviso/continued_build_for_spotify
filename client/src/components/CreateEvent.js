@@ -10,7 +10,8 @@ export default class CreateEvent extends Component {
       description: '',
       start: '',
       end: '',
-      date: this.props.currentDay
+      date: this.props.currentDay,
+      month: this.props.currentMonth
     }
   }
 
@@ -24,7 +25,8 @@ export default class CreateEvent extends Component {
             'event_description': this.state.description,
             'start_time': this.state.start,
             'end_time': this.state.end,
-            'event_date': this.state.date
+            'event_date': this.state.date,
+            'event_month': this.state.month
         })
     })
     .then(res => console.log(res))

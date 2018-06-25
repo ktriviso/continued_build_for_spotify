@@ -28,7 +28,7 @@ export default class CheckList extends Component {
           <li><i className="far fa-check-circle circle"></i>UI has boxes and rows with the correct date (moment.js)</li>
           <li><i className="far fa-check-circle circle"></i>POST, GET, PUT, DELETE are succesfully integrated with backend</li>
           <li><i className="far fa-check-circle circle"></i>SQL database synced</li>
-          <li><i className="far fa-check-circle circle"></i>user is greeted on entering application</li>
+          <li><i className="far fa-check-circle circle"></i>dynamic user is greeted on entering application</li>
           <li><i className="far fa-check-circle circle"></i>Hosted on Heroku</li>
         </ul>
       </div>

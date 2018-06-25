@@ -28,8 +28,7 @@ export default class ViewEvent extends Component {
         'event_name': this.state.name,
         'event_description': this.state.description,
         'start_time': this.state.start,
-        'end_time': this.state.end,
-        'event_date': this.props.currentEvent.event_id
+        'end_time': this.state.end
       })
     })
     .then(res => console.log(res))

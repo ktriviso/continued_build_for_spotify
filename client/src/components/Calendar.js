@@ -8,9 +8,11 @@ export default class Calendar extends Component {
   constructor(props){
     super(props);
     this.state = {
+      formatDate: moment(),
       weekdays: moment.weekdays(),
       weekdaysShort: moment.weekdaysShort(),
-      months: moment.months()
+      months: moment.months(),
+      showMonthList: false
     }
   }
 
@@ -34,30 +36,80 @@ export default class Calendar extends Component {
   }
 
   getCurrentYear = () => {
-    return moment().format('Y')
+    return this.state.formatDate.format('Y')
   }
 
   getCurrentMonth = () => {
-    return moment().format('MMMM')
+    return this.state.formatDate.format('MMMM')
   }
 
   getDaysInMonth = () => {
-    return moment().daysInMonth()
+    return this.state.formatDate.daysInMonth()
   }
 
   getCurrentDate = () => {
-    return moment().get('date')
+    return this.state.formatDate.get('date')
   }
 
   getCurrentDay  = () => {
-    return moment().get('D')
+    return this.state.formatDate.get('D')
   }
 
   firstDayOfMonth = () => {
-    let date = moment()
+    let date = this.state.formatDate
     let firstDay = moment(date).startOf('month').format('d')
     return firstDay
   }
+
+  SelectList = (props) => {
+    let popup = props.data.map((data) => {
+      return (
+        <div key={data}>
+          <a href="#" onClick={(e) => {this.changeMonth(e, data)}}>
+          {data}
+          </a>
+        </div>
+      )
+    })
+
+    return (
+      <div className="month-dropdown">
+      {popup}
+      </div>
+    )
+  }
+
+  setMonth = (month) => {
+    // needed help for the moment.js current month update
+    // https://www.youtube.com/watch?v=5vYJO0zRfbQ
+    let updatedMonth = this.state.months.indexOf(month)
+    let formatDate = Object.assign({}, this.state.formatDate)
+    formatDate = moment(formatDate).set("month", updatedMonth)
+    this.setState({
+      formatDate: formatDate
+    })
+  }
+
+  changeMonth = (e, data) => {
+    e.preventDefault()
+    this.setMonth(data)
+  }
+
+  showMonths = () => {
+    this.setState({
+      showMonthList: !this.state.showMonthList
+    })
+  }
+
+  MonthNav = () => {
+    return (
+      <span onClick={this.showMonths}>
+      {this.getCurrentMonth()}
+      {this.state.showMonthList ? <this.SelectList data={this.state.months} /> : null}
+      </span>
+    )
+  }
+
 
   render() {
 
@@ -79,14 +131,14 @@ export default class Calendar extends Component {
       let className = i === this.getCurrentDay() ? 'day current-day' : 'day'
       if(this.state.eventsFromDatabase){
         let dayEvents = this.state.eventsFromDatabase.filter((eve) => {
-          return eve.event_date === i
+          return (eve.event_date === i && eve.event_month === this.getCurrentMonth())
         })
         daysInMonth.push(
-          <Day className={className} key={i} index={i} appendForm={this.appendForm} eventsFromDatabase={dayEvents}/>
+          <Day className={className} key={i} index={i} appendForm={this.appendForm} eventsFromDatabase={dayEvents} currentMonth={this.getCurrentMonth()}/>
         )
       } else {
         daysInMonth.push(
-          <Day className={className} key={i} index={i} appendForm={this.appendForm} eventsFromDatabase={null}/>
+          <Day className={className} key={i} index={i} appendForm={this.appendForm} eventsFromDatabase={null} currentMonth={this.getCurrentMonth()}/>
         )
       }
     }
@@ -132,14 +184,14 @@ export default class Calendar extends Component {
     return (
       <div>
 
-      <h1>Welcome {this.state.user ? this.state.user : null}</h1>
+      <h1 id="user">Welcome {this.state.user ? this.state.user : null}</h1>
 
       <div className='calendar-container'>
         <table className='calendar'>
           <thead>
             <tr className='calendar-header'>
               <td colSpan='7'>
-                {this.getCurrentMonth()}
+                <this.MonthNav />
               </td>
             </tr>
           </thead>
@@ -158,3 +210,5 @@ export default class Calendar extends Component {
     );
   }
 }
+
+// {this.getCurrentMonth()}

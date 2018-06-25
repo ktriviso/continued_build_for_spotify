@@ -4,8 +4,8 @@ module.exports = {
   handleSubmit(calendar_event){
     return db.one(`
       INSERT INTO event
-      (event_name, event_description, start_time, end_time, event_date)
-      VALUES ($/event_name/, $/event_description/, $/start_time/, $/end_time/, $/event_date/)
+      (event_name, event_description, start_time, end_time, event_date, event_month)
+      VALUES ($/event_name/, $/event_description/, $/start_time/, $/end_time/, $/event_date/, $/event_month/)
       RETURNING *
     `, calendar_event);
   },
@@ -24,8 +24,7 @@ module.exports = {
       event_name = $/event_name/,
       event_description = $/event_description/,
       start_time = $/start_time/,
-      end_time = $/end_time/,
-      event_date = $/event_date/
+      end_time = $/end_time/
       WHERE event_id = $/event_id/
       RETURNING *
     `, calendar_event);

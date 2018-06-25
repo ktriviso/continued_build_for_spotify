@@ -8,5 +8,6 @@ CREATE TABLE event (
   event_description VARCHAR(28) NOT NULL,
   start_time VARCHAR(28) NOT NULL,
   end_time VARCHAR(28) NOT NULL,
-  event_date INT NOT NULL
+  event_date INT NOT NULL,
+  event_month VARCHAR(28) NOT NULL
 );
