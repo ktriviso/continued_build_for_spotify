@@ -15,6 +15,11 @@ export default class Calendar extends Component {
   }
 
   componentDidMount(){
+    const user = localStorage.getItem('user')
+    this.setState({
+      user: user
+    })
+
     fetch(`api`, {
       method: 'GET',
       headers: {'Content-Type': 'application/json'}
@@ -127,7 +132,8 @@ export default class Calendar extends Component {
     return (
       <div>
 
-      <CheckList />
+      <h1>Welcome {this.state.user ? this.state.user : null}</h1>
+
       <div className='calendar-container'>
         <table className='calendar'>
           <thead>
@@ -145,6 +151,8 @@ export default class Calendar extends Component {
           </tbody>
         </table>
       </div>
+
+      <CheckList />
 
       </div>
     );
