@@ -4,9 +4,7 @@ import './css/checkList.css'
 export default class CheckList extends Component {
   constructor(props){
     super(props);
-    this.state = {
-
-    }
+    this.state = {}
   }
 
   render(){
