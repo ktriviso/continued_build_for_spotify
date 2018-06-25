@@ -87,10 +87,11 @@ export default class ViewEvent extends Component {
       <i onClick={onClose} className="far fa-times-circle"></i>
 
       <h1>Your Event</h1>
-      <p>Event: {this.state.currentEvent ? this.state.currentEvent.event_name : null}</p>
-      <p>Description: {this.state.currentEvent ? this.state.currentEvent.event_description : null}</p>
-      <p>Date: {this.state.currentEvent ? this.state.currentEvent.event_date : null}</p>
-      <p>Time: {this.state.currentEvent ? this.state.currentEvent.start_time : null} - {this.state.currentEvent ? this.state.currentEvent.end_time : null}</p>
+      <p>Event: <b>{this.state.currentEvent ? this.state.currentEvent.event_name : null}</b></p>
+      <p>Description: <b>{this.state.currentEvent ? this.state.currentEvent.event_description : null}</b></p>
+      <p>Date: <b>{this.state.currentEvent ? this.state.currentEvent.event_date : null}</b></p>
+      <p>Start Time: <b>{this.state.currentEvent ? this.state.currentEvent.start_time : null}</b></p>
+      <p>End Time: <b>{this.state.currentEvent ? this.state.currentEvent.end_time : null}</b></p>
 
       <h3>Need to Update your event?</h3>
       <h4>Add your event information below and click the {<i className="fas fa-pencil-alt inline-icon"></i>} below.</h4>

@@ -151,7 +151,8 @@ export default class Calendar extends Component {
 
     let daysInMonth = []
     for(let i = 1; i < this.getDaysInMonth(); i++){
-      let className = i === this.getCurrentDay() ? 'day current-day' : 'day'
+      // highlights the current date for day and month
+      let className = (i === this.getCurrentDay() && (moment().format('MMMM') === this.getCurrentMonth()))? 'day current-day' : 'day'
       if(this.state.eventsFromDatabase){
         let dayEvents = this.state.eventsFromDatabase.filter((eve) => {
           return (eve.event_date === i && eve.event_month === this.getCurrentMonth())
@@ -165,9 +166,6 @@ export default class Calendar extends Component {
         )
       }
     }
-
-    // will log how many spaces the month needs for valid dates
-    // console.log("days: ", daysInMonth)
 
     let weekdays = this.state.weekdaysShort.map((day) => {
       return (
