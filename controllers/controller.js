@@ -14,8 +14,13 @@ module.exports = {
 
   deleteEvent(req, res, next) {
     db.deleteEvent(req.params.event_id)
-      .then(() => next())
-      .catch(err => next(err));
+    .then(data => {
+      res.send('ok')
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
   },
 
   async getAllEvents(req, res, next) {
@@ -32,17 +37,16 @@ module.exports = {
     }
   },
 
-  async updateEvent(req, res, next) {
+  updateEvent(req, res, next) {
     req.body.event_id = req.params.event_id
-    const updatedEvent = await db.update(req.body).then(data => data)
-    .catch(err => next(err));
-
-    if(updatedEvent){
-      res.send(updatedEvent)
+    db.update(req.body).then(data => data)
+    .then(data => {
+      res.send('ok')
       next();
-    } else {
-      res.send('err')
-    }
+    })
+    .catch(err => {
+      next(err);
+    });
   }
 
 }

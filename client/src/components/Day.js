@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import UpdateEvent from './UpdateEvent'
+import ViewEvent from './ViewEvent'
 import CreateEvent from './CreateEvent'
-import './day.css';
+import './css/day.css';
 
 export default class Day extends Component {
   constructor(props){
@@ -9,7 +9,7 @@ export default class Day extends Component {
     this.state = {
       day: this.props.index,
       isCreateEventOpen: false,
-      isUpdateEventOpen: false
+      isViewEventOpen: false
     }
   }
 
@@ -30,15 +30,15 @@ export default class Day extends Component {
     this.setState({
       currentEvent: targetEvent
     })
-    this.openUpdateEvent()
+    this.openViewEvent()
   }
 
-  openUpdateEvent = () => {
-    this.setState({ isUpdateEventOpen: true})
+  openViewEvent = () => {
+    this.setState({ isViewEventOpen: true})
   }
 
-  closeUpdateEvent = () => {
-    this.setState({ isUpdateEventOpen: false })
+  closeViewEvent = () => {
+    this.setState({ isViewEventOpen: false })
   }
 
   closeCreateEvent = () => {
@@ -54,9 +54,9 @@ export default class Day extends Component {
   }
 
   render() {
-    const conditionalUpdateEvent = this.state.isUpdateEventOpen ?
-    <UpdateEvent
-      onClose={this.closeUpdateEvent}
+    const conditionalViewEvent = this.state.isViewEventOpen ?
+    <ViewEvent
+      onClose={this.closeViewEvent}
       currentEvent={this.state.currentEvent}
     /> : null
 
@@ -66,7 +66,7 @@ export default class Day extends Component {
       currentDay={this.state.day}
     /> : null
 
-    const scroll = this.state.calendar_event && this.state.calendar_event.length > 2 ? <span className="icon"><i className="fas fa-arrow-down"></i></span> : null
+    const scroll = this.state.calendar_event && this.state.calendar_event.length > 2 ? <span className="icon"><i className="fas fa-arrow-down icon-small"></i></span> : null
 
     const calendar_event = this.state.calendar_event ? this.state.calendar_event.map((eve, i) => {
       return <li key={eve.event_id} event_id={eve.event_id} onClick={this.viewEvent}>{eve.event_name}</li>
@@ -75,11 +75,11 @@ export default class Day extends Component {
     return (
       <td key={this.props.index} className={this.props.className}>
         {conditionalCreateEvent}
-        {conditionalUpdateEvent}
+        {conditionalViewEvent}
         <span>{this.props.index}</span>
         <ul>{calendar_event}</ul>
         {scroll}
-        <span onClick={this.createEvent}>+</span>
+        <span onClick={this.createEvent}><i className="fas fa-plus icon-small"></i></span>
       </td>
     );
   }

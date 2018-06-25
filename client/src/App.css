@@ -1,6 +1,42 @@
 .App {
   position: relative;
-  margin: 50px auto;
+  margin: 10px auto;
   text-align: center;
   padding: 2rem;
+}
+
+button {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  padding: .5rem;
+}
+
+button:hover, i:hover {
+  color: #ADD8E6
+}
+
+input {
+  border: 1px solid black;
+  background-image:none;
+  background-color:transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  padding: .2rem;
+  margin: .2rem;
+  text-align: center;
+  min-width: max-content;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+i {
+  font-size: 1rem;
+}
+
+.inline-icon {
+  color: #ADD8E6
 }

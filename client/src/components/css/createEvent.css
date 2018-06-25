@@ -1,10 +1,10 @@
-.eventModal {
+.createEvent {
   position: fixed;
   top: 0;
   left: 0;
   background: rgba(255,255,255, .8);
-  border: 1px solid black;
   z-index: 1000;
   height: 100%;
   width: 100%;
+  padding-top: 9rem;
 }

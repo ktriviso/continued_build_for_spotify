@@ -28,5 +28,8 @@ ul {
   text-align: right;
   line-height: 1.9rem;
   padding-right: .2rem;
-  font-size: .6rem;
+}
+
+.icon-small {
+  font-size: .6rem!important;
 }

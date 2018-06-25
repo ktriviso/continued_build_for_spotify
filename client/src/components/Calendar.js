@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment'
+import CheckList from './CheckList'
 import Day from './Day'
-import './calendar.css';
+import './css/calendar.css';
 
 export default class Calendar extends Component {
   constructor(props){
@@ -83,8 +84,6 @@ export default class Calendar extends Component {
           <Day className={className} key={i} index={i} appendForm={this.appendForm} eventsFromDatabase={null}/>
         )
       }
-
-
     }
 
     // will log how many spaces the month needs for valid dates
@@ -126,6 +125,9 @@ export default class Calendar extends Component {
     })
 
     return (
+      <div>
+
+      <CheckList />
       <div className='calendar-container'>
         <table className='calendar'>
           <thead>
@@ -142,6 +144,8 @@ export default class Calendar extends Component {
             {elements}
           </tbody>
         </table>
+      </div>
+
       </div>
     );
   }

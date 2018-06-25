@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './updateEvent.css';
+import './css/viewEvent.css';
 
-export default class UpdateEvent extends Component {
+export default class ViewEvent extends Component {
 
   constructor(props){
     super(props)
@@ -34,6 +34,7 @@ export default class UpdateEvent extends Component {
     })
     .then(res => console.log(res))
     .catch(err => console.log(err))
+    this.props.onClose()
   }
 
   removeEvent = () => {
@@ -68,7 +69,18 @@ export default class UpdateEvent extends Component {
     const { onClose } = this.props
 
     return (
-      <div className='eventModal'>
+      <div className='viewEvent'>
+      <i onClick={onClose} className="far fa-times-circle"></i>
+
+      <h1>Your Event</h1>
+      <p>Event: {this.state.currentEvent ? this.state.currentEvent.event_name : null}</p>
+      <p>Description: {this.state.currentEvent ? this.state.currentEvent.event_description : null}</p>
+      <p>Date: {this.state.currentEvent ? this.state.currentEvent.event_date : null}</p>
+      <p>Time: {this.state.currentEvent ? this.state.currentEvent.start_time : null} - {this.state.currentEvent ? this.state.currentEvent.end_time : null}</p>
+
+      <h3>Need to Update your event?</h3>
+      <h4>Add your event information below and click the {<i className="fas fa-pencil-alt inline-icon"></i>} below.</h4>
+
       <form onSubmit={this.updateEvent}>
         <input name="name" type="text" placeholder={this.state.currentEvent ? this.state.currentEvent.event_name : null}
         onChange={this.name}/>
@@ -82,10 +94,10 @@ export default class UpdateEvent extends Component {
         <input name="end" type="text" placeholder={this.state.currentEvent ? this.state.currentEvent.event_description : null}
         onChange={this.end}/>
         <br/>
-        <button type="submit">Update Event</button>
+        <button type="submit"><i className="fas fa-pencil-alt"></i></button><button><i onClick={this.removeEvent} className="far fa-trash-alt"></i></button>
       </form>
-      <button onClick={onClose}>X</button>
-      <button onClick={this.removeEvent}>Trash</button>
+
+
       </div>
     );
   }

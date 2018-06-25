@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './createEvent.css';
+import './css/createEvent.css';
 
 export default class CreateEvent extends Component {
 
@@ -12,7 +12,6 @@ export default class CreateEvent extends Component {
       end: '',
       date: this.props.currentDay
     }
-    this.createEvent = this.createEvent.bind(this)
   }
 
   createEvent = (e) => {
@@ -30,6 +29,7 @@ export default class CreateEvent extends Component {
     })
     .then(res => console.log(res))
     .catch(err => console.log(err))
+    this.props.onClose()
   }
 
   name = (e) => {
@@ -52,7 +52,11 @@ export default class CreateEvent extends Component {
     const { formattedDate, onClose } = this.props;
 
     return (
-      <div className='formModal'>
+      <div className='createEvent'>
+      <i onClick={onClose} className="far fa-times-circle inline"></i>
+      <h1>Your new event</h1>
+      <h4>To add a new event to your calendar, add the event information and click on the <i className="far fa-save inline-icon"></i> below </h4>
+
         {formattedDate}
         <form onSubmit={this.createEvent}>
           <input name="name" type="text" placeholder="name"
@@ -61,15 +65,15 @@ export default class CreateEvent extends Component {
           <input name="description" type="text" placeholder="description"
           onChange={this.description}/>
           <br/>
-          <input name="start" type="text" placeholder="start"
+          <input name="end" type="text" placeholder="end"
           onChange={this.start}/>
           <br/>
           <input name="end" type="text" placeholder="end"
           onChange={this.end}/>
           <br/>
-          <button type="submit">Save Event</button>
+          <button type="submit"><i className="far fa-save"></i></button>
         </form>
-        <button onClick={onClose}>X</button>
+
       </div>
     );
   }
