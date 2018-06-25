@@ -6,7 +6,7 @@ router.route('/:event_id')
   .delete(controller.deleteEvent)
 
 router.route('/')
-    .post(controller.addEvent)
-    .get(controller.getAllEvents)
+  .post(controller.addEvent)
+  .get(controller.getAllEvents)
 
 module.exports = router;

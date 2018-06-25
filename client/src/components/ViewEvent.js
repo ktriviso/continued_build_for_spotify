@@ -67,6 +67,7 @@ export default class ViewEvent extends Component {
 
   render() {
     const { onClose } = this.props
+    console.log(this.props.currentEvent.event_id)
 
     return (
       <div className='viewEvent'>
