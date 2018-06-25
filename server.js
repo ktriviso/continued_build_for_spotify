@@ -10,11 +10,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, 'dist')));
-
-// app.get('/api/hello', (req, res) => {
-//   res.send({ express: 'Hello From Express' });
-// });
-
+app.use(express.static(path.resolve(__dirname, '../client/build')))
 app.use('/api', router)
+
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '../client/build', 'index.html'))
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
