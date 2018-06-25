@@ -36,11 +36,6 @@ export default class Calendar extends Component {
     .catch((err) => console.log(err))
   }
 
-
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-  }
-
   getCurrentYear = () => {
     return this.state.formatDate.format('Y')
   }

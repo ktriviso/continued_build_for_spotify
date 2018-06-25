@@ -15,8 +15,13 @@ export default class CreateEvent extends Component {
     }
   }
 
+  isValid = (start, end) => {
+    return start < end
+  }
+
   createEvent = (e) => {
     e.preventDefault()
+    this.isValid(this.state.start, this.state.end) ?
     fetch('api', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -31,6 +36,7 @@ export default class CreateEvent extends Component {
     })
     .then(res => console.log(res))
     .catch(err => console.log(err))
+    : alert('invalid time')
     this.props.onClose()
   }
 
