@@ -1,0 +1,26 @@
+.userGreeting {
+  text-align: center;
+  margin: auto;
+  margin-top: 10%;
+}
+
+.userGreeting h4 {
+  color: #4284;
+}
+
+.userGreeting p {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 3rem;
+}
+
+.userGreeting a {
+  color: #4284;
+  font-size: .8rem;
+}
+
+.userGreeting a:hover {
+  color: #ADD8E6;
+}

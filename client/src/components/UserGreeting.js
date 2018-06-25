@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './css/userGreeting.css';
 
 export default class UserGreeting extends Component {
   constructor(props){
@@ -27,9 +28,10 @@ export default class UserGreeting extends Component {
         <form onSubmit={this.addUser}>
           <input name="name" type="text" placeholder="name"
           onChange={this.name}/>
-          <br/>
-          <button type="submit"><i className="far fa-save"></i></button>
+          <button type="submit"><i class="fas fa-arrow-right"></i></button>
         </form>
+
+        <p>Krista Triviso<br/><a href="http://www.kristatriviso.com">www.kristatriviso.com</a></p>
       </div>
     );
   }
