@@ -12,7 +12,8 @@ export default class Calendar extends Component {
       weekdays: moment.weekdays(),
       weekdaysShort: moment.weekdaysShort(),
       months: moment.months(),
-      showMonthList: false
+      showMonthList: false,
+      showCheckList: false
     }
   }
 
@@ -61,6 +62,12 @@ export default class Calendar extends Component {
     return firstDay
   }
 
+  lastDayOfMonth = () => {
+    let date = this.state.formatDate
+    let lastDay = moment(date).endOf('month').format('d')
+    return lastDay
+  }
+
   SelectList = (props) => {
     let popup = props.data.map((data) => {
       return (
@@ -103,17 +110,23 @@ export default class Calendar extends Component {
 
   MonthNav = () => {
     return (
-      <span onClick={this.showMonths}>
+      <h3 className="month" onClick={this.showMonths}>
       {this.getCurrentMonth()}
       {this.state.showMonthList ? <this.SelectList data={this.state.months} /> : null}
-      </span>
+      </h3>
     )
+  }
+
+  toggleCheckList = () => {
+    this.setState({
+      showCheckList: !this.state.showCheckList
+    })
   }
 
 
   render() {
 
-    // key is i * 50 because there was a key duplication error
+    // how many blanks to leave in the begining of the month
     let blanks = []
     for(let i = 0; i < this.firstDayOfMonth(); i++){
       blanks.push(
@@ -122,9 +135,15 @@ export default class Calendar extends Component {
         </td>
       )
     }
-
-    // will log how many blank spaces the month needs to start with
-    // console.log('blanks:', blanks)
+    // how many blanks to leave in the end of the month
+    let endBlanks = []
+    for(let j = this.lastDayOfMonth(); j < 7; j++){
+      endBlanks.push(
+        <td key={j*90+1} className='emptySlot'>
+          {''}
+        </td>
+      )
+    }
 
     let daysInMonth = []
     for(let i = 1; i < this.getDaysInMonth(); i++){
@@ -152,7 +171,7 @@ export default class Calendar extends Component {
       )
     })
 
-    const totalSlots = [...blanks, ...daysInMonth]
+    const totalSlots = [...blanks, ...daysInMonth, ...endBlanks]
     let rows = []
     let cells = []
 
@@ -184,7 +203,11 @@ export default class Calendar extends Component {
     return (
       <div>
 
-      <h1 id="user">Welcome {this.state.user ? this.state.user : null}</h1>
+      <header>
+        <h4 onClick={this.toggleCheckList}>Hey {this.state.user ? this.state.user : null}, click me</h4>
+        <CheckList isCheckListOpen={this.state.showCheckList} />
+        <h1>Welcome {this.state.user ? this.state.user : null}</h1>
+      </header>
 
       <div className='calendar-container'>
         <table className='calendar'>
@@ -203,8 +226,6 @@ export default class Calendar extends Component {
           </tbody>
         </table>
       </div>
-
-      <CheckList />
 
       </div>
     );
