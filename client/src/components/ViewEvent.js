@@ -17,6 +17,20 @@ export default class ViewEvent extends Component {
     this.setState({
       currentEvent: this.props.currentEvent
     })
+
+    let hoursArray = []
+
+    for(let i = 0; i <= 12; i ++){
+      hoursArray.push(`00${i}`)
+    }
+
+    for(let j = 12; j <= 24; j ++){
+      hoursArray.push(`${j}00`)
+    }
+
+    this.setState({
+      hours: hoursArray
+    })
   }
 
   updateEvent = (e) => {
@@ -66,7 +80,7 @@ export default class ViewEvent extends Component {
 
   render() {
     const { onClose } = this.props
-    console.log(this.props.currentEvent.event_id)
+    const option = this.state.hours ? this.state.hours.map((hour, i) => <option value={hour} key={i}>{hour}</option>) : null
 
     return (
       <div className='viewEvent'>
@@ -88,11 +102,13 @@ export default class ViewEvent extends Component {
         <input name="description" type="text" placeholder={this.state.currentEvent ? this.state.currentEvent.event_description : null}
         onChange={this.description}/>
         <br/>
-        <input name="start" type="text" placeholder={this.state.currentEvent ? this.state.currentEvent.event_description : null}
-        onChange={this.start}/>
+        <select value={this.state.start} onChange={this.start}>
+          {option}
+        </select>
         <br/>
-        <input name="end" type="text" placeholder={this.state.currentEvent ? this.state.currentEvent.event_description : null}
-        onChange={this.end}/>
+        <select value={this.state.end} onChange={this.end}>
+          {option}
+        </select>
         <br/>
         <button type="submit"><i className="fas fa-pencil-alt"></i></button><button><i onClick={this.removeEvent} className="far fa-trash-alt"></i></button>
       </form>

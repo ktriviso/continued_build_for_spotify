@@ -28,7 +28,7 @@ export default class UserGreeting extends Component {
         <form onSubmit={this.addUser}>
           <input name="name" type="text" placeholder="name"
           onChange={this.name}/>
-          <button type="submit"><i class="fas fa-arrow-right"></i></button>
+          <button type="submit"><i className="fas fa-arrow-right"></i></button>
         </form>
 
         <p>Krista Triviso<br/><a href="http://www.kristatriviso.com">www.kristatriviso.com</a></p>

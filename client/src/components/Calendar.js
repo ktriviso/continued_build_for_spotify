@@ -36,6 +36,11 @@ export default class Calendar extends Component {
     .catch((err) => console.log(err))
   }
 
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
+  }
+
   getCurrentYear = () => {
     return this.state.formatDate.format('Y')
   }
@@ -123,7 +128,6 @@ export default class Calendar extends Component {
     })
   }
 
-
   render() {
 
     // how many blanks to leave in the begining of the month
@@ -153,11 +157,11 @@ export default class Calendar extends Component {
           return (eve.event_date === i && eve.event_month === this.getCurrentMonth())
         })
         daysInMonth.push(
-          <Day className={className} key={i} index={i} appendForm={this.appendForm} eventsFromDatabase={dayEvents} currentMonth={this.getCurrentMonth()}/>
+          <Day className={className} key={i} index={i} eventsFromDatabase={dayEvents} currentMonth={this.getCurrentMonth()} />
         )
       } else {
         daysInMonth.push(
-          <Day className={className} key={i} index={i} appendForm={this.appendForm} eventsFromDatabase={null} currentMonth={this.getCurrentMonth()}/>
+          <Day className={className} key={i} index={i} eventsFromDatabase={null} currentMonth={this.getCurrentMonth()} />
         )
       }
     }

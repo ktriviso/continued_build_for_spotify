@@ -40,3 +40,14 @@ i {
 .inline-icon {
   color: #ADD8E6
 }
+
+/* https://codepen.io/ericrasch/pen/zjDBx */
+select {
+   border: 1px solid black;
+   color: #555;
+   margin: 5px;
+   overflow: hidden;
+   padding: 5px 10px;
+   width: 100px;
+   background-color: white;
+}

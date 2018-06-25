@@ -34,6 +34,22 @@ export default class CreateEvent extends Component {
     this.props.onClose()
   }
 
+  componentDidMount(){
+    let hoursArray = []
+
+    for(let i = 0; i <= 12; i ++){
+      hoursArray.push(`00${i}`)
+    }
+
+    for(let j = 12; j <= 24; j ++){
+      hoursArray.push(`${j}00`)
+    }
+
+    this.setState({
+      hours: hoursArray
+    })
+  }
+
   name = (e) => {
     this.setState({ name: e.target.value })
   }
@@ -52,6 +68,7 @@ export default class CreateEvent extends Component {
 
   render() {
     const { formattedDate, onClose } = this.props;
+    const option = this.state.hours ? this.state.hours.map((hour, i) => <option value={hour} key={i}>{hour}</option>) : null
 
     return (
       <div className='createEvent'>
@@ -67,11 +84,13 @@ export default class CreateEvent extends Component {
           <input name="description" type="text" placeholder="description"
           onChange={this.description}/>
           <br/>
-          <input name="end" type="text" placeholder="end"
-          onChange={this.start}/>
+          <select value={this.state.start} onChange={this.start}>
+            {option}
+          </select>
           <br/>
-          <input name="end" type="text" placeholder="end"
-          onChange={this.end}/>
+          <select value={this.state.end} onChange={this.end}>
+            {option}
+          </select>
           <br/>
           <button type="submit"><i className="far fa-save"></i></button>
         </form>

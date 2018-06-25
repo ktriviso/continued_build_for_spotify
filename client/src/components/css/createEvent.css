@@ -8,3 +8,7 @@
   width: 100%;
   padding-top: 9rem;
 }
+
+.createEvent button {
+  padding: 0px!important;
+}

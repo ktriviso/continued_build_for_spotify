@@ -4,10 +4,10 @@ DROP TABLE IF EXISTS event CASCADE;
 
 CREATE TABLE event (
   event_id SERIAL PRIMARY KEY,
-  event_name VARCHAR(28) NOT NULL,
-  event_description VARCHAR(28) NOT NULL,
-  start_time VARCHAR(28) NOT NULL,
-  end_time VARCHAR(28) NOT NULL,
-  event_date INT NOT NULL,
-  event_month VARCHAR(28) NOT NULL
+  event_name VARCHAR(28),
+  event_description VARCHAR(28),
+  start_time VARCHAR(28),
+  end_time VARCHAR(28),
+  event_date INT,
+  event_month VARCHAR(28)
 );
