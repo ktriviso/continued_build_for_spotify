@@ -20,7 +20,6 @@ export default class CheckList extends Component {
             <li><i className="far fa-check-circle circle"></i>UI handles multiple events on a given day (scroll capeability with icon)</li>
             <li><i className="far fa-check-circle circle"></i>events are sent to the backend by clicking on save icon</li>
             <li><i className="far fa-check-circle circle"></i>form includes start time, end time, description, name, edit and submit</li>
-            <li><i className="far fa-check-circle circle"></i>form validation for appropriate time constraints</li>
             <li><i className="far fa-check-circle circle"></i>once submit is sent the form disappears</li>
             <li><i className="far fa-check-circle circle"></i>events appear in respective day’s box</li>
             <li><i className="far fa-check-circle circle"></i>events start and end the same day</li>
