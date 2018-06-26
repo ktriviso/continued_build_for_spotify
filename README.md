@@ -68,6 +68,8 @@ Events (Optional API. Not required; bonus points available)
 
 ## Issues and Resolutions
 
-ERROR:
+ERROR: Could not get the parents component to re-render when an event was updated
 
-RESOLUTION:
+RESOLUTION: window.location.href = window.location.href
+not best practice but it forces the window to reload
+when using window.reload this error happened : window.reload is not a function
