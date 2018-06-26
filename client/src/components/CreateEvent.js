@@ -21,7 +21,6 @@ export default class CreateEvent extends Component {
 
   createEvent = (e) => {
     e.preventDefault()
-    this.isValid(this.state.start, this.state.end) ?
     fetch('api', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -34,10 +33,17 @@ export default class CreateEvent extends Component {
             'event_month': this.state.month
         })
     })
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-    : alert('invalid time')
-    this.props.onClose()
+    .then(res => {
+      console.log(res)
+      if(res.status === 200) {
+        this.props.onClose()
+        this.props.shouldUpdate(true)
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      this.props.shouldUpdate(false)
+    })
   }
 
   componentDidMount(){

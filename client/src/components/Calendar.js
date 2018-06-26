@@ -22,7 +22,10 @@ export default class Calendar extends Component {
     this.setState({
       user: user
     })
+    this.getEventsFromDatabase()
+  }
 
+  getEventsFromDatabase = () => {
     fetch(`api`, {
       method: 'GET',
       headers: {'Content-Type': 'application/json'}
@@ -123,6 +126,37 @@ export default class Calendar extends Component {
     })
   }
 
+  shouldUpdate = (newEventAdded) => {
+    console.log(newEventAdded)
+    if(newEventAdded){
+      this.getEventsFromDatabase()
+    }
+
+    // ****** this really fucks it up *********
+    // this.setState({
+    //   shouldUpdate: res
+    // })
+  }
+
+  componentWillReceiveProps(nextProps){
+    // this never hits its driving me fucking nuts ... it is receiving props! *****
+    console.log(nextProps)
+    // this.setState({
+    //   shouldUpdate: nextProps
+    // })
+  }
+
+   // componentDidUpdate(prevProps, prevState){
+   //   console.log(this.props)
+   //   console.log(prevProps)
+   //   console.log(this.props === prevProps)
+   // }
+
+   // ****** this really fucks it up *********
+   // shouldComponentUpdate(nextProps, nextState) {
+   //     console.log(nextProps === this.props)
+   // }
+
   render() {
 
     // how many blanks to leave in the begining of the month
@@ -153,11 +187,12 @@ export default class Calendar extends Component {
           return (eve.event_date === i && eve.event_month === this.getCurrentMonth())
         })
         daysInMonth.push(
-          <Day className={className} key={i} index={i} eventsFromDatabase={dayEvents} currentMonth={this.getCurrentMonth()} />
+          <Day className={className} key={i} index={i} eventsFromDatabase={dayEvents} shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} />
         )
       } else {
         daysInMonth.push(
-          <Day className={className} key={i} index={i} eventsFromDatabase={null} currentMonth={this.getCurrentMonth()} />
+          <Day className={className} key={i} index={i} eventsFromDatabase={null}
+          shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} />
         )
       }
     }

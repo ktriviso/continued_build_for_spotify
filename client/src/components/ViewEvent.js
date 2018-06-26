@@ -39,7 +39,6 @@ export default class ViewEvent extends Component {
 
   updateEvent = (e) => {
     e.preventDefault();
-    this.isValid(this.state.start, this.state.end) ?
     fetch(`api/${this.state.currentEvent.event_id}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
@@ -50,9 +49,17 @@ export default class ViewEvent extends Component {
         'end_time': this.state.end
       })
     })
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-    : alert('invalid time')
+    .then(res => {
+      console.log(res)
+      if(res.status === 200) {
+        this.props.onClose()
+        this.props.shouldUpdate(true)
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      this.props.shouldUpdate(false)
+    })
     this.props.onClose()
   }
 
@@ -60,8 +67,17 @@ export default class ViewEvent extends Component {
     fetch(`api/${this.state.currentEvent.event_id}`, {
       method: 'DELETE'
     })
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+    .then(res => {
+      console.log(res)
+      if(res.status === 200) {
+        this.props.onClose()
+        this.props.shouldUpdate(true)
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      this.props.shouldUpdate(false)
+    })
     this.props.onClose()
   }
 

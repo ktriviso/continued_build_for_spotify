@@ -54,16 +54,19 @@ export default class Day extends Component {
     }
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return nextState.updateComp != this.state.updateComp;
-  // }
+  shouldUpdate = (eventAdded) => {
+    console.log(eventAdded)
+    this.props.shouldUpdate(eventAdded)
+  }
 
   render() {
+
     const conditionalViewEvent = this.state.isViewEventOpen ?
     <ViewEvent
       onClose={this.closeViewEvent}
       currentEvent={this.state.currentEvent}
       currentMonth={this.props.currentMonth}
+      shouldUpdate={this.shouldUpdate}
     /> : null
 
     const conditionalCreateEvent = this.state.isCreateEventOpen ?
@@ -71,6 +74,7 @@ export default class Day extends Component {
       onClose={this.closeCreateEvent}
       currentDay={this.state.day}
       currentMonth={this.props.currentMonth}
+      shouldUpdate={this.shouldUpdate}
     /> : null
 
     const scroll = this.state.calendar_event && this.state.calendar_event.length > 2 ? <span className="icon"><i className="fas fa-arrow-down icon-small"></i></span> : null
