@@ -33,8 +33,13 @@ export default class ViewEvent extends Component {
     })
   }
 
+  isValid = (start, end) => {
+    return start < end
+  }
+
   updateEvent = (e) => {
     e.preventDefault();
+    this.isValid(this.state.start, this.state.end) ?
     fetch(`api/${this.state.currentEvent.event_id}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
@@ -47,6 +52,7 @@ export default class ViewEvent extends Component {
     })
     .then(res => console.log(res))
     .catch(err => console.log(err))
+    : alert('invalid time')
     this.props.onClose()
   }
 
@@ -56,24 +62,29 @@ export default class ViewEvent extends Component {
     })
     .then(res => console.log(res))
     .catch(err => console.log(err))
+    this.props.onClose()
   }
 
   name = (e) => {
+    // i really wanted this to work but didnt
     // const value = e.target.value ? e.target.value : e.target.getAttribute('placeholder')
     this.setState({ name: e.target.value })
   }
 
   description = (e) => {
+    // i really wanted this to work but didnt
     // const value = e.target.value ? e.target.value : e.target.getAttribute('placeholder')
     this.setState({ description: e.target.value })
   }
 
   start = (e) => {
+    // i really wanted this to work but didnt
     // const value = e.target.value ? e.target.value : e.target.getAttribute('placeholder')
     this.setState({ start: e.target.value })
   }
 
   end = (e) => {
+    // i really wanted this to work but didnt
     // const value = e.target.value ? e.target.value : e.target.getAttribute('placeholder')
     this.setState({ end: e.target.value })
   }
@@ -111,8 +122,10 @@ export default class ViewEvent extends Component {
           {option}
         </select>
         <br/>
-        <button type="submit"><i className="fas fa-pencil-alt"></i></button><button><i onClick={this.removeEvent} className="far fa-trash-alt"></i></button>
+        <button type="submit"><i className="fas fa-pencil-alt"></i></button>
       </form>
+
+      <button><i onClick={this.removeEvent} className="far fa-trash-alt"></i></button>
 
 
       </div>

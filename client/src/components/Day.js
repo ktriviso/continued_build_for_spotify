@@ -9,7 +9,8 @@ export default class Day extends Component {
     this.state = {
       day: this.props.index,
       isCreateEventOpen: false,
-      isViewEventOpen: false
+      isViewEventOpen: false,
+      updateComp: false
     }
   }
 
@@ -52,6 +53,10 @@ export default class Day extends Component {
       })
     }
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextState.updateComp != this.state.updateComp;
+  // }
 
   render() {
     const conditionalViewEvent = this.state.isViewEventOpen ?

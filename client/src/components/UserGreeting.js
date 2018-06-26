@@ -16,7 +16,7 @@ export default class UserGreeting extends Component {
   addUser = (e) => {
     e.preventDefault()
     localStorage.setItem('user', this.state.name)
-    this.props.callbackFromParent(true)
+    this.props.history.push(`/calendar`)
   }
 
   render() {

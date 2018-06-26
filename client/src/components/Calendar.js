@@ -198,10 +198,10 @@ export default class Calendar extends Component {
     })
 
     return (
-      <div>
+      <div id="root">
 
       <header>
-        <h4 onClick={this.toggleCheckList}>Hey {this.state.user ? this.state.user : null}, click me</h4>
+        <p onClick={this.toggleCheckList}>Hey {this.state.user ? this.state.user : null}, <b>toggle</b> me</p>
         <CheckList isCheckListOpen={this.state.showCheckList} />
         <h1>Welcome {this.state.user ? this.state.user : null}</h1>
       </header>

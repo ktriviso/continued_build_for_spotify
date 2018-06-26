@@ -106,11 +106,16 @@ header {
   justify-content: space-between;;
 }
 
-header h4{
+header p{
   margin-top: -1rem;
 }
 
 .month {
   background-color: #4284;
   color: white;
+  text-align: center;
+}
+
+#root {
+  margin: 1.5rem;
 }

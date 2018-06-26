@@ -30,7 +30,7 @@ input {
 }
 
 textarea:focus, input:focus{
-    outline: none;
+  outline: none;
 }
 
 i {

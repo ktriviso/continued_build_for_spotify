@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Calendar from './components/Calendar'
 import UserGreeting from './components/UserGreeting'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 export default class App extends Component {
@@ -19,14 +20,15 @@ export default class App extends Component {
 
   render() {
 
-    if(!this.state.isUser){
-      return <UserGreeting callbackFromParent={this.myCallback} />
-    } else {
-      return (
-        <div className="App">
-          <Calendar />
-        </div>
-      );
-    }
+    return (
+      <BrowserRouter>
+      <div>
+        <Switch>
+          <Route exact path='/calendar' component={Calendar} />
+          <Route exact path='/' component={UserGreeting} />
+        </Switch>
+      </div>
+      </BrowserRouter>
+    )
   }
 }
