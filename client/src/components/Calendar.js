@@ -127,38 +127,13 @@ export default class Calendar extends Component {
   }
 
   shouldUpdate = (newEventAdded) => {
-    console.log(newEventAdded)
     if(newEventAdded){
       this.getEventsFromDatabase()
     }
 
-    // ****** this really fucks it up *********
-    // this.setState({
-    //   shouldUpdate: res
-    // })
   }
-
-  componentWillReceiveProps(nextProps){
-    // this never hits its driving me fucking nuts ... it is receiving props! *****
-    console.log(nextProps)
-    // this.setState({
-    //   shouldUpdate: nextProps
-    // })
-  }
-
-   // componentDidUpdate(prevProps, prevState){
-   //   console.log(this.props)
-   //   console.log(prevProps)
-   //   console.log(this.props === prevProps)
-   // }
-
-   // ****** this really fucks it up *********
-   // shouldComponentUpdate(nextProps, nextState) {
-   //     console.log(nextProps === this.props)
-   // }
 
   render() {
-
     // how many blanks to leave in the begining of the month
     let blanks = []
     for(let i = 0; i < this.firstDayOfMonth(); i++){

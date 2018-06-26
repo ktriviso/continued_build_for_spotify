@@ -55,7 +55,7 @@ export default class Day extends Component {
   }
 
   shouldUpdate = (eventAdded) => {
-    console.log(eventAdded)
+    // console.log(eventAdded)
     this.props.shouldUpdate(eventAdded)
   }
 
