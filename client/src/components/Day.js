@@ -80,7 +80,7 @@ export default class Day extends Component {
     const scroll = this.state.calendar_event && this.state.calendar_event.length > 2 ? <span className="icon"><i className="fas fa-arrow-down icon-small"></i></span> : null
 
     const calendar_event = this.state.calendar_event ? this.state.calendar_event.map((eve, i) => {
-      return <li key={eve.event_id} event_id={eve.event_id} onClick={this.viewEvent}>{eve.event_name}</li>
+      return <li className="day-listitem" key={eve.event_id} event_id={eve.event_id} onClick={this.viewEvent}>{eve.event_name}</li>
     }) : null
 
     return (

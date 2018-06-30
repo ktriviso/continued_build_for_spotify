@@ -1,0 +1,38 @@
+.sideBar {
+  width: 20vw;
+  height: 100vh;
+  padding: 1rem;
+}
+
+#spotify {
+  min-height: 30px;
+  border: 1px solid white;
+  padding: 1rem;
+}
+
+#spotify p {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+#day-view {
+  border: 1px solid white;
+  min-height: 200px;
+}
+
+#event-view {
+  border: 1px solid white;
+  min-height: 200px;
+}
+
+#event-list {
+  border: 1px solid white;
+  min-height: 200px;
+}
+
+.sideBar ul {
+  display: flex;
+  background-color: none!important;
+  text-align: center;
+  justify-content: space-evenly;
+}

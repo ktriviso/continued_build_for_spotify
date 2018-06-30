@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment'
-import CheckList from './CheckList'
+import SideBar from './SideBar'
 import Day from './Day'
 import './css/calendar.css';
 
@@ -12,8 +12,7 @@ export default class Calendar extends Component {
       weekdays: moment.weekdays(),
       weekdaysShort: moment.weekdaysShort(),
       months: moment.months(),
-      showMonthList: false,
-      showCheckList: false
+      showMonthList: false
     }
   }
 
@@ -120,12 +119,6 @@ export default class Calendar extends Component {
     )
   }
 
-  toggleCheckList = () => {
-    this.setState({
-      showCheckList: !this.state.showCheckList
-    })
-  }
-
   shouldUpdate = (newEventAdded) => {
     if(newEventAdded){
       this.getEventsFromDatabase()
@@ -210,10 +203,12 @@ export default class Calendar extends Component {
     return (
       <div id="root">
 
+      <SideBar/>
+
+      <div id="container">
+
       <header>
-        <p onClick={this.toggleCheckList}>Hey {this.state.user ? this.state.user : null}, <b>toggle</b> me</p>
-        <CheckList isCheckListOpen={this.state.showCheckList} />
-        <h1>Welcome {this.state.user ? this.state.user : null}</h1>
+        <h1>Welcome {this.state.user ? this.state.user : null} <i className="far fa-image"></i></h1>
       </header>
 
       <div className='calendar-container'>
@@ -232,6 +227,7 @@ export default class Calendar extends Component {
             {elements}
           </tbody>
         </table>
+      </div>
       </div>
 
       </div>

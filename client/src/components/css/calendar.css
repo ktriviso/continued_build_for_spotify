@@ -1,10 +1,13 @@
 *{
   padding: 0;
   margin: 0;
+  color: white;
 }
 
 html {
   box-sizing: border-box;
+  background-image: url("../../calendar-images/clouds.jpg");
+  background-size: cover;
 }
 
 *, *:before, *:after {
@@ -12,18 +15,18 @@ html {
 }
 
 .calendar-container {
-  border: 2px solid black;
+  border: 2px solid white;
+  background-color: rgba(255,255,255,.1);
 }
 
 .calendar {
-  background-color: white;
   border-spacing: 0;
   border-collapse: collapse;
   width: 100%;
 }
 
 .calendar-header {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   font-size: 1.6em;
 }
 
@@ -33,7 +36,7 @@ html {
 
 .day,
 .emptySlot {
-  border: 1px solid rgba(0,0,0,.2);
+  border: 1px solid rgba(255,255,255,.3);
   width: 14%;
   height: 100px!important;
 }
@@ -72,7 +75,7 @@ html {
 }
 
 .current-day {
-  background-color: #4284;
+  background-color: rgba(255,255,255,.2);
   color: white;
 }
 
@@ -81,10 +84,8 @@ html {
     right: 40%;
     width: max-content;
     padding: 5px;
-    background: white;
-    border: 2px solid #4284;
     font-size: 1rem;
-    background-color: white;
+    background-color: rgba(255,255,255,.8);
     z-index: 2000;
 }
 
@@ -94,28 +95,37 @@ html {
 
 a {
   text-decoration: none;
-  color: black;
+  color: rgba(0,0,0,.3);
 }
 
 a:hover {
-  color: #ADD8E6;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;;
-}
-
-header p{
-  margin-top: -1rem;
+  color: rgba(0,0,0,.4);
 }
 
 .month {
-  background-color: #4284;
   color: white;
   text-align: center;
 }
 
 #root {
-  margin: 1.5rem;
+  display: flex;
+}
+
+#container {
+  height: 100vh;
+  width: 80vw;
+  padding-right: 2rem;
+}
+
+header {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  text-align: right;
+}
+
+
+header i {
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 5px;
 }
