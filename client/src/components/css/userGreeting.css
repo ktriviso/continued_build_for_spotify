@@ -2,6 +2,7 @@
   text-align: center;
   margin: auto;
   margin-top: 10%;
+  width: 100vw;
 }
 
 .userGreeting h4 {
@@ -14,13 +15,22 @@
   width: 100%;
   text-align: center;
   padding-bottom: 3rem;
+  color: rgba(255,255,255,.5);
+}
+
+.userGreeting input {
+  border: 1px solid white;
+  min-width: 200px;
+  padding: .3rem;
+  font-size: 1rem;
+
+}
+
+::placeholder {
+  color: rgba(255,255,255,.5);
 }
 
 .userGreeting a {
-  color: #4284;
+  color: rgba(255,255,255,.5);
   font-size: .8rem;
-}
-
-.userGreeting a:hover {
-  color: #ADD8E6;
 }

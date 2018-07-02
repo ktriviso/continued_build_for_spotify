@@ -23,8 +23,7 @@ export default class UserGreeting extends Component {
 
     return (
       <div className="userGreeting">
-      <h1>Welcome to The Spotify Internship Calendar Application</h1>
-      <h4>Please enter your name below to open your calendar</h4>
+      <h1>Please enter your name below to open your calendar</h1>
         <form onSubmit={this.addUser}>
           <input name="name" type="text" placeholder="name"
           onChange={this.name}/>

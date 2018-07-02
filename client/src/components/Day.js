@@ -46,7 +46,6 @@ export default class Day extends Component {
   }
 
   shouldUpdate = (eventAdded) => {
-    // console.log(eventAdded)
     this.props.shouldUpdate(eventAdded)
   }
 
@@ -66,13 +65,13 @@ export default class Day extends Component {
       return <li className="day-listitem day-li" key={eve.event_id} event_id={eve.event_id} onClick={this.viewEvent}>{eve.event_name}</li>
     }) : null
 
-    // {this.sendToSideBar(conditionalViewEvent)}
-
     return (
       <td key={this.props.index} className={this.props.className}>
         {conditionalCreateEvent}
         <span>{this.props.index}</span>
-        <ul className="day-ul">{calendar_event}</ul>
+        <ul className="day-ul">
+          {calendar_event}
+        </ul>
         {scroll}
         <span onClick={this.createEvent}><i className="fas fa-plus icon-small"></i></span>
       </td>

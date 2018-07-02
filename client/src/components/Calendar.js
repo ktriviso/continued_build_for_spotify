@@ -123,14 +123,12 @@ export default class Calendar extends Component {
     if(newEventAdded){
       this.getEventsFromDatabase()
     }
-
   }
 
   passCurrentEventOnClick = (eve) => {
     this.setState({
       passCurrentEventOnClick : eve
     })
-    return eve
   }
 
   render() {
@@ -162,12 +160,12 @@ export default class Calendar extends Component {
           return (eve.event_date === i && eve.event_month === this.getCurrentMonth())
         })
         daysInMonth.push(
-          <Day className={className} key={i} index={i} eventsFromDatabase={dayEvents} shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} passCurrentEventOnClick={this.passCurrentEventOnClick}/>
+          <Day className={className} key={i} index={i} eventsFromDatabase={dayEvents} shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} passCurrentEventOnClick={this.passCurrentEventOnClick} />
         )
       } else {
         daysInMonth.push(
           <Day className={className} key={i} index={i} eventsFromDatabase={null}
-          shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} passCurrentEventOnClick={this.passCurrentEventOnClick}/>
+          shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} passCurrentEventOnClick={this.passCurrentEventOnClick} />
         )
       }
     }
@@ -210,7 +208,7 @@ export default class Calendar extends Component {
     return (
       <div id="root">
 
-      <SideBar eventsFromDatabase={this.state.eventsFromDatabase} getCurrentDay={this.getCurrentDay()} passCurrentEventOnClick={this.state.passCurrentEventOnClick ? this.state.passCurrentEventOnClick : null}/>
+      <SideBar eventsFromDatabase={this.state.eventsFromDatabase} getCurrentDay={this.getCurrentDay()} passCurrentEventOnClick={this.state.passCurrentEventOnClick ? this.state.passCurrentEventOnClick : null} shouldUpdate={this.shouldUpdate} />
 
       <div id="container">
 
@@ -241,5 +239,3 @@ export default class Calendar extends Component {
     );
   }
 }
-
-// {this.getCurrentMonth()}

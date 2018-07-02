@@ -4,12 +4,6 @@
   padding: 1rem;
 }
 
-#spotify {
-  height: 50px;
-  border: 1px solid rgba(255,255,255,.3);
-  padding: 1rem;
-}
-
 .fab {
   color: rgba(0,0,0,.5);
 }
@@ -22,20 +16,22 @@
 
 #day-view {
   border: 1px solid rgba(255,255,255,.3);
-  height: 200px;
+  height: 25vh;
   overflow: scroll;
   padding-left: 5px;
   position: relative;
+  text-align: center;
+  padding-top: 10%;
 }
 
 #event-view {
-  border: 1px solid rgba(255,255,255,.3);
-  height: 200px;
+  text-align: center;
+  padding-top: 2rem;
 }
 
-#event-list {
+#event-list, #event-view {
   border: 1px solid rgba(255,255,255,.3);
-  height: 200px;
+  height: 25vh;
   overflow: scroll;
   padding-left: 5px;
 }
@@ -49,4 +45,14 @@
 
 .sideBar li {
   list-style: none;
+  padding: 5px;
+}
+
+.icon-edit {
+  display: inline;
+}
+
+.sideBar i {
+  color: white;
+  display: inline;
 }
