@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ViewEvent from './ViewEvent'
 import CreateEvent from './CreateEvent'
 import './css/day.css';
 
