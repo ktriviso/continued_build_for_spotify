@@ -50,7 +50,7 @@ export default class SideBar extends Component {
 
   updateEvent = (e) => {
     e.preventDefault();
-    fetch(`api/${this.state.currentEvent.event_id}`, {
+    fetch(`api/${this.state.passCurrentEventOnClick.event_id}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -170,7 +170,7 @@ export default class SideBar extends Component {
   }
 
   render(){
-    
+
     const viewEventForm = !this.state.viewEventForm ? <this.viewEventForm /> : null
     const editEventForm = this.state.viewEventForm ? <this.editEventForm /> : null
 
