@@ -10,7 +10,8 @@ export default class SideBar extends Component {
       name: '',
       description: '',
       start: '',
-      end: ''
+      end: '',
+      viewEventForm: false
     }
   }
 
@@ -88,6 +89,12 @@ export default class SideBar extends Component {
     })
   }
 
+  changeForm = () => {
+    this.setState({
+      viewEventForm: true
+    })
+  }
+
   viewEventForm = () => {
     return (
       <div id="event-view">
@@ -106,7 +113,7 @@ export default class SideBar extends Component {
         <li>
           {this.state.passCurrentEventOnClick ? `End Time: ${this.state.passCurrentEventOnClick.end_time}` : null}
         </li>
-        <li className="icon-edit">
+        <li className="icon-edit" onClick={this.changeForm}>
           {this.state.passCurrentEventOnClick ? <i className="fas fa-pencil-alt inline-icon"></i> : null}
         </li>
         <li className="icon-edit">
@@ -135,6 +142,7 @@ export default class SideBar extends Component {
         </select>
         <br/>
         <button type="submit">update</button>
+        <button onClick={this.closeEditForm}>close</button>
       </form>
     )
   }
@@ -155,9 +163,18 @@ export default class SideBar extends Component {
     this.setState({ end: e.target.value })
   }
 
+  closeEditForm = () => {
+    this.setState({
+      viewEventForm: false
+    })
+  }
+
   render(){
 
+    console.log(this.state.passCurrentEventOnClick)
 
+    const viewEventForm = !this.state.viewEventForm ? <this.viewEventForm /> : null
+    const editEventForm = (this.state.viewEventForm) ? <this.editEventForm /> : null
 
     const events = this.props.eventsFromDatabase ? this.props.eventsFromDatabase.map((eve, i) => {
       return <li key={i} event_id={eve.event_id}>{eve.event_name}</li>
@@ -175,8 +192,8 @@ export default class SideBar extends Component {
           {day_events}
         </div>
         <div className="sideBarHeader">View A Selected Event</div>
-        <this.viewEventForm />
-        <this.editEventForm />
+        {viewEventForm}
+        {editEventForm}
         <div className="sideBarHeader">Your Upcomming events</div>
         <div id="event-list">
           {events}
