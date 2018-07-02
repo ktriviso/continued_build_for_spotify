@@ -97,7 +97,7 @@ export default class SideBar extends Component {
 
   viewEventForm = () => {
     return (
-      <div id="event-view">
+      <div className="event-view">
         <li>
           {this.state.passCurrentEventOnClick ? `Name: ${this.state.passCurrentEventOnClick.event_name}` : null}
         </li>
@@ -126,24 +126,26 @@ export default class SideBar extends Component {
   editEventForm = () => {
     const option = this.state.hours ? this.state.hours.map((hour, i) => <option value={hour} key={i}>{hour}</option>) : null
     return (
-      <form onSubmit={this.updateEvent}>
-        <input name="name" type="text" placeholder={this.state.currentEvent ? this.state.currentEvent.event_name : null}
-        onChange={this.name}/>
-        <br/>
-        <input name="description" type="text" placeholder={this.state.currentEvent ? this.state.currentEvent.event_description : null}
-        onChange={this.description}/>
-        <br/>
-        <select value={this.state.start} onChange={this.start}>
-          {option}
-        </select>
-        <br/>
-        <select value={this.state.end} onChange={this.end}>
-          {option}
-        </select>
-        <br/>
-        <button type="submit">update</button>
-        <button onClick={this.closeEditForm}>close</button>
-      </form>
+      <div className="event-view">
+        <form onSubmit={this.updateEvent}>
+          <input name="name" type="text" placeholder={this.state.currentEvent ? this.state.currentEvent.event_name : null}
+          onChange={this.name}/>
+          <br/>
+          <input name="description" type="text" placeholder={this.state.currentEvent ? this.state.currentEvent.event_description : null}
+          onChange={this.description}/>
+          <br/>
+          <select value={this.state.start} onChange={this.start}>
+            {option}
+          </select>
+          <br/>
+          <select value={this.state.end} onChange={this.end}>
+            {option}
+          </select>
+          <br/>
+          <button type="submit">update</button>
+          <button onClick={this.closeEditForm}>close</button>
+        </form>
+      </div>
     )
   }
 
