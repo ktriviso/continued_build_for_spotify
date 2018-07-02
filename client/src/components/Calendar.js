@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment'
 import SideBar from './SideBar'
+import BackgroundImage from './BackgroundImage'
 import Day from './Day'
 import './css/calendar.css';
 
@@ -213,7 +214,8 @@ export default class Calendar extends Component {
       <div id="container">
 
       <header>
-        <h1 onClick={this.passToSideBar}>Welcome {this.state.user ? this.state.user : null} <i className="far fa-image"></i></h1>
+        <h1 onClick={this.passToSideBar}>Welcome {this.state.user ? this.state.user : null}</h1>
+        <BackgroundImage />
       </header>
 
       <div className='calendar-container'>
