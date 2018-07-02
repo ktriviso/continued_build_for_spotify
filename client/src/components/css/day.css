@@ -1,4 +1,4 @@
-ul, li{
+.day-ul, .day-li{
   list-style: none;
   list-style-type: none;
   height: 50%;

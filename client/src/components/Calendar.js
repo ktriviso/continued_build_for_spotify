@@ -203,7 +203,7 @@ export default class Calendar extends Component {
     return (
       <div id="root">
 
-      <SideBar/>
+      <SideBar eventsFromDatabase={this.state.eventsFromDatabase} getCurrentDay={this.getCurrentDay()}/>
 
       <div id="container">
 
