@@ -126,6 +126,13 @@ export default class Calendar extends Component {
 
   }
 
+  passCurrentEventOnClick = (eve) => {
+    this.setState({
+      passCurrentEventOnClick : eve
+    })
+    return eve
+  }
+
   render() {
     // how many blanks to leave in the begining of the month
     let blanks = []
@@ -155,12 +162,12 @@ export default class Calendar extends Component {
           return (eve.event_date === i && eve.event_month === this.getCurrentMonth())
         })
         daysInMonth.push(
-          <Day className={className} key={i} index={i} eventsFromDatabase={dayEvents} shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} />
+          <Day className={className} key={i} index={i} eventsFromDatabase={dayEvents} shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} passCurrentEventOnClick={this.passCurrentEventOnClick}/>
         )
       } else {
         daysInMonth.push(
           <Day className={className} key={i} index={i} eventsFromDatabase={null}
-          shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} />
+          shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} passCurrentEventOnClick={this.passCurrentEventOnClick}/>
         )
       }
     }
@@ -203,12 +210,12 @@ export default class Calendar extends Component {
     return (
       <div id="root">
 
-      <SideBar eventsFromDatabase={this.state.eventsFromDatabase} getCurrentDay={this.getCurrentDay()}/>
+      <SideBar eventsFromDatabase={this.state.eventsFromDatabase} getCurrentDay={this.getCurrentDay()} passCurrentEventOnClick={this.state.passCurrentEventOnClick ? this.state.passCurrentEventOnClick : null}/>
 
       <div id="container">
 
       <header>
-        <h1>Welcome {this.state.user ? this.state.user : null} <i className="far fa-image"></i></h1>
+        <h1 onClick={this.passToSideBar}>Welcome {this.state.user ? this.state.user : null} <i className="far fa-image"></i></h1>
       </header>
 
       <div className='calendar-container'>

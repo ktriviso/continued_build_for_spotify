@@ -9,7 +9,6 @@ export default class Day extends Component {
     this.state = {
       day: this.props.index,
       isCreateEventOpen: false,
-      isViewEventOpen: false,
       updateComp: false
     }
   }
@@ -31,15 +30,7 @@ export default class Day extends Component {
     this.setState({
       currentEvent: targetEvent
     })
-    this.openViewEvent()
-  }
-
-  openViewEvent = () => {
-    this.setState({ isViewEventOpen: true})
-  }
-
-  closeViewEvent = () => {
-    this.setState({ isViewEventOpen: false })
+    this.props.passCurrentEventOnClick(targetEvent)
   }
 
   closeCreateEvent = () => {
@@ -61,14 +52,6 @@ export default class Day extends Component {
 
   render() {
 
-    const conditionalViewEvent = this.state.isViewEventOpen ?
-    <ViewEvent
-      onClose={this.closeViewEvent}
-      currentEvent={this.state.currentEvent}
-      currentMonth={this.props.currentMonth}
-      shouldUpdate={this.shouldUpdate}
-    /> : null
-
     const conditionalCreateEvent = this.state.isCreateEventOpen ?
     <CreateEvent
       onClose={this.closeCreateEvent}
@@ -88,7 +71,6 @@ export default class Day extends Component {
     return (
       <td key={this.props.index} className={this.props.className}>
         {conditionalCreateEvent}
-        {conditionalViewEvent}
         <span>{this.props.index}</span>
         <ul className="day-ul">{calendar_event}</ul>
         {scroll}
