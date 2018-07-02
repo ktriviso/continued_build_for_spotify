@@ -170,11 +170,9 @@ export default class SideBar extends Component {
   }
 
   render(){
-
-    console.log(this.state.passCurrentEventOnClick)
-
+    
     const viewEventForm = !this.state.viewEventForm ? <this.viewEventForm /> : null
-    const editEventForm = (this.state.viewEventForm) ? <this.editEventForm /> : null
+    const editEventForm = this.state.viewEventForm ? <this.editEventForm /> : null
 
     const events = this.props.eventsFromDatabase ? this.props.eventsFromDatabase.map((eve, i) => {
       return <li key={i} event_id={eve.event_id}>{eve.event_name}</li>
