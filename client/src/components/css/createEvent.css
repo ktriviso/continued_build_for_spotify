@@ -2,13 +2,44 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(255,255,255, .8);
+  background: rgba(255,255,255, .5);
   z-index: 1000;
   height: 100%;
   width: 100%;
   padding-top: 9rem;
+  font-size: 2rem;
 }
 
 .createEvent button {
-  padding: 0px!important;
+  font-size: 1rem;
+}
+
+.createEvent button:hover{
+  color: rgba(0,0,0,.3)
+}
+
+.createEvent i {
+  color: black;
+}
+
+.createEvent i:hover {
+  color: white;
+}
+
+.createEvent * {
+  line-height: normal;
+}
+
+.createEvent h1, .createEvent h4 {
+  color: rgba(0,0,0,.3)
+}
+
+.createEvent ::placeholder {
+  color: black;
+  font-size: 1rem;
+}
+
+.createEvent input {
+  width: 200px;
+  padding: .3rem;
 }

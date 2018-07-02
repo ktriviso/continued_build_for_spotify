@@ -86,7 +86,7 @@ export default class CreateEvent extends Component {
       <div className='createEvent'>
       <i onClick={onClose} className="far fa-times-circle inline"></i>
       <h1>Your new event</h1>
-      <h4>To add a new event to your calendar, add the event information and click on the <i className="far fa-save inline-icon"></i> below </h4>
+      <h4>To add a new event to your calendar, add the event information and click on the button below </h4>
 
         {formattedDate}
         <form onSubmit={this.createEvent}>
@@ -104,7 +104,7 @@ export default class CreateEvent extends Component {
             {option}
           </select>
           <br/>
-          <button type="submit"><i className="far fa-save"></i></button>
+          <button type="submit">save me</button>
         </form>
 
       </div>

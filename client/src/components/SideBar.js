@@ -70,6 +70,8 @@ export default class SideBar extends Component {
       console.log(err)
       this.props.shouldUpdate(false)
     })
+
+    this.closeForms(true)
   }
 
   removeEvent = () => {
@@ -87,12 +89,20 @@ export default class SideBar extends Component {
       console.log(err)
       this.shouldUpdate(false)
     })
+
+    this.closeForms(true)
   }
 
   changeForm = () => {
     this.setState({
       viewEventForm: true
     })
+  }
+
+  closeForms = (bool) => {
+    console.log(bool)
+    // this need to refresh the page
+    //when you edit a form it needs to show the update event, not the old one
   }
 
   viewEventForm = () => {
