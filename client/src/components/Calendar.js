@@ -148,6 +148,7 @@ export default class Calendar extends Component {
   selectNewBackground = (img) => {
     const root = document.getElementById('root')
     let backgroundImage
+    // theres probably a better way to do this
     if(img === Clouds){
       backgroundImage = Clouds
     } else if (img === City){
@@ -167,7 +168,6 @@ export default class Calendar extends Component {
     } else if (img === Water){
       backgroundImage = Water
     }
-    // root.style.backgroundColor = 'blue'
     root.style.backgroundImage = `url(${backgroundImage})`
   }
 

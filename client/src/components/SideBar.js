@@ -60,7 +60,6 @@ export default class SideBar extends Component {
       })
     })
     .then(res => {
-      console.log(res)
       if(res.status === 200) {
         this.props.shouldUpdate(true)
       }
@@ -80,7 +79,6 @@ export default class SideBar extends Component {
     .then(res => {
       console.log(res)
       if(res.status === 200) {
-        this.props.onClose()
         this.shouldUpdate(true)
       }
     })
@@ -181,7 +179,7 @@ export default class SideBar extends Component {
   }
 
   render(){
-    
+
     const viewEventForm = !this.state.viewEventForm ? <this.viewEventForm /> : null
     const editEventForm = this.state.viewEventForm ? <this.editEventForm /> : null
 
