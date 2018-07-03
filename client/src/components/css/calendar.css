@@ -6,12 +6,15 @@
 
 html {
   box-sizing: border-box;
-  background-image: url("../../calendar-images/clouds.jpg");
-  background-size: cover;
 }
 
 *, *:before, *:after {
   box-sizing: inherit;
+}
+
+#root {
+  /* background-image: url("../../calendar-images/clouds.jpg"); */
+  background-size: cover;
 }
 
 .calendar-container {

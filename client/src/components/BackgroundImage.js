@@ -25,8 +25,9 @@ export default class BackgroundImage extends Component {
     })
   }
 
-  selectNewBackground = () => {
-    console.log('ive been clicked')
+  selectNewBackground = (e) => {
+    const data = e.target.getAttribute('data')
+    this.props.selectNewBackground(data)
   }
 
   Images = () => {
@@ -34,21 +35,22 @@ export default class BackgroundImage extends Component {
       <div>
       {this.state.showImageMenu ?
       <div className="image-menu">
-        <img onClick={this.selectNewBackground} alt='' src={City}/>
-        <img onClick={this.selectNewBackground} alt='' src={Clouds}/>
-        <img onClick={this.selectNewBackground} alt='' src={Color}/>
-        <img onClick={this.selectNewBackground} alt='' src={Fog}/>
-        <img onClick={this.selectNewBackground} alt='' src={Jellyfish}/>
-        <img onClick={this.selectNewBackground} alt='' src={Leaves}/>
-        <img onClick={this.selectNewBackground} alt='' src={Mountains}/>
-        <img onClick={this.selectNewBackground} alt='' src={Sunrise}/>
-        <img onClick={this.selectNewBackground} alt='' src={Water}/>
+        <img onClick={this.selectNewBackground} data={City} alt='' src={City}/>
+        <img onClick={this.selectNewBackground} data={Clouds} alt='' src={Clouds}/>
+        <img onClick={this.selectNewBackground} data={Color} alt='' src={Color}/>
+        <img onClick={this.selectNewBackground} data={Fog} alt='' src={Fog}/>
+        <img onClick={this.selectNewBackground} data={Jellyfish} alt='' src={Jellyfish}/>
+        <img onClick={this.selectNewBackground} data={Leaves} alt='' src={Leaves}/>
+        <img onClick={this.selectNewBackground} data={Mountains} alt='' src={Mountains}/>
+        <img onClick={this.selectNewBackground} data={Sunrise} alt='' src={Sunrise}/>
+        <img onClick={this.selectNewBackground} data={Water} alt='' src={Water}/>
       </div> : null}
       </div>
     )
   }
 
   render(){
+
     return(
       <div className="backgroundImage">
         <i onClick={this.openImageMenu} className="far fa-image"></i>

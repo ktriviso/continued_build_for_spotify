@@ -5,6 +5,16 @@ import BackgroundImage from './BackgroundImage'
 import Day from './Day'
 import './css/calendar.css';
 
+import Clouds from '../calendar-images/clouds.jpg'
+import City from '../calendar-images/city.jpg'
+import Color from '../calendar-images/color-blur.jpg'
+import Fog from '../calendar-images/fog.jpg'
+import Jellyfish from '../calendar-images/jellyfish.jpg'
+import Leaves from '../calendar-images/leaves.jpg'
+import Mountains from '../calendar-images/mountains.jpg'
+import Sunrise from '../calendar-images/sunrise.jpg'
+import Water from '../calendar-images/water.jpg'
+
 export default class Calendar extends Component {
   constructor(props){
     super(props);
@@ -23,6 +33,9 @@ export default class Calendar extends Component {
       user: user
     })
     this.getEventsFromDatabase()
+
+    const root = document.getElementById('root')
+    root.style.backgroundColor = 'Black'
   }
 
   getEventsFromDatabase = () => {
@@ -132,6 +145,18 @@ export default class Calendar extends Component {
     })
   }
 
+  selectNewBackground = (img) => {
+    const root = document.getElementById('root')
+    console.log(img)
+    console.log(Clouds)
+    let backgroundImage
+    if(img === Clouds){
+      backgroundImage = Clouds
+    }
+    // root.style.backgroundColor = 'blue'
+    root.style.backgroundImage = `url(${backgroundImage})`
+  }
+
 
   render() {
 
@@ -209,15 +234,15 @@ export default class Calendar extends Component {
     })
 
     return (
-      <div id="root">
+      <div id="root" style={{backgroundImage: this.selectNewBackground}}>
 
       <SideBar eventsFromDatabase={this.state.eventsFromDatabase} getCurrentDay={this.getCurrentDay()} passCurrentEventOnClick={this.state.passCurrentEventOnClick ? this.state.passCurrentEventOnClick : null} shouldUpdate={this.shouldUpdate} getCurrentMonth={this.getCurrentMonth()}/>
 
       <div id="container">
 
       <header>
-        <h1 onClick={this.passToSideBar}>Welcome {this.state.user ? this.state.user : null}</h1>
-        <BackgroundImage />
+        <h1 onClick={this.passToSideBar}>Welcome {this.state.user ? this.state.user : Clouds}</h1>
+        <BackgroundImage selectNewBackground={this.selectNewBackground}/>
       </header>
 
       <div className='calendar-container'>
