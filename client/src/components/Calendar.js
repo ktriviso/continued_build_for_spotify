@@ -147,11 +147,25 @@ export default class Calendar extends Component {
 
   selectNewBackground = (img) => {
     const root = document.getElementById('root')
-    console.log(img)
-    console.log(Clouds)
     let backgroundImage
     if(img === Clouds){
       backgroundImage = Clouds
+    } else if (img === City){
+      backgroundImage = City
+    } else if (img === Color){
+      backgroundImage = Color
+    } else if (img === Fog){
+      backgroundImage = Fog
+    } else if (img === Jellyfish){
+      backgroundImage = Jellyfish
+    } else if (img === Leaves) {
+      backgroundImage = Leaves
+    } else if (img === Mountains){
+      backgroundImage = Mountains
+    } else if (img === Sunrise){
+      backgroundImage = Sunrise
+    } else if (img === Water){
+      backgroundImage = Water
     }
     // root.style.backgroundColor = 'blue'
     root.style.backgroundImage = `url(${backgroundImage})`
