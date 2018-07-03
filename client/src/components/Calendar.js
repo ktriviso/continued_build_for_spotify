@@ -75,9 +75,9 @@ export default class Calendar extends Component {
     let popup = props.data.map((data) => {
       return (
         <div key={data}>
-          <a href="#" onClick={(e) => {this.changeMonth(e, data)}}>
+          <button onClick={(e) => {this.changeMonth(e, data)}}>
           {data}
-          </a>
+          </button>
         </div>
       )
     })
@@ -132,7 +132,9 @@ export default class Calendar extends Component {
     })
   }
 
+
   render() {
+
     // how many blanks to leave in the begining of the month
     let blanks = []
     for(let i = 0; i < this.firstDayOfMonth(); i++){
@@ -209,7 +211,7 @@ export default class Calendar extends Component {
     return (
       <div id="root">
 
-      <SideBar eventsFromDatabase={this.state.eventsFromDatabase} getCurrentDay={this.getCurrentDay()} passCurrentEventOnClick={this.state.passCurrentEventOnClick ? this.state.passCurrentEventOnClick : null} shouldUpdate={this.shouldUpdate} />
+      <SideBar eventsFromDatabase={this.state.eventsFromDatabase} getCurrentDay={this.getCurrentDay()} passCurrentEventOnClick={this.state.passCurrentEventOnClick ? this.state.passCurrentEventOnClick : null} shouldUpdate={this.shouldUpdate} getCurrentMonth={this.getCurrentMonth()}/>
 
       <div id="container">
 

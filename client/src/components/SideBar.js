@@ -16,11 +16,10 @@ export default class SideBar extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-
     if(nextProps.eventsFromDatabase){
       const arr = []
       nextProps.eventsFromDatabase.map((eve) => {
-        eve.event_date === nextProps.getCurrentDay ? arr.push(eve) : null
+        return eve.event_date === nextProps.getCurrentDay && eve.event_month === nextProps.getCurrentMonth ? arr.push(eve) : null
       })
       this.setState({
         getCurrentEvents: arr,
@@ -182,7 +181,7 @@ export default class SideBar extends Component {
   }
 
   render(){
-
+    
     const viewEventForm = !this.state.viewEventForm ? <this.viewEventForm /> : null
     const editEventForm = this.state.viewEventForm ? <this.editEventForm /> : null
 
