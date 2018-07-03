@@ -21,12 +21,12 @@
   padding-left: 5px;
   position: relative;
   text-align: center;
-  padding-top: 10%;
+  padding-top: .5rem;
 }
 
 .event-view {
   text-align: center;
-  padding-top: 2rem;
+  padding-top: .5rem;
 }
 
 #event-list, .event-view {
