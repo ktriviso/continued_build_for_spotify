@@ -43,10 +43,7 @@ export default class Calendar extends Component {
       method: 'GET',
       headers: {'Content-Type': 'application/json'}
     })
-    .then((response) => {
-      console.log(response)
-      return response.json()
-    })
+    .then((response) => response.json())
     .then((data) => {
       this.setState({
           eventsFromDatabase: data
