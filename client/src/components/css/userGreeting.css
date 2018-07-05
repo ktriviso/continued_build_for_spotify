@@ -1,8 +1,10 @@
 .userGreeting {
   text-align: center;
   margin: auto;
-  margin-top: 10%;
+  padding-top: 10%;
   width: 100vw;
+  background-color: black;
+  height: 100vh;
 }
 
 .userGreeting h4 {
