@@ -45,7 +45,7 @@ export default class Calendar extends Component {
     })
     .then((response) => {
       console.log(response)
-      response.json()
+      return response.json()
     })
     .then((data) => {
       this.setState({
