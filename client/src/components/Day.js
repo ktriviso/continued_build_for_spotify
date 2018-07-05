@@ -42,21 +42,30 @@ export default class Day extends Component {
     })
   }
 
-  componentWillReceiveProps(nextProps){
-    console.log(nextProps)
-    if(nextProps.eventsFromDatabase !== undefined){
-      this.setState({
-        calendar_event : nextProps.eventsFromDatabase
-      })
+  shouldComponentUpdate(prevProps, prevState){
+    if(prevProps.eventsFromDatabase && this.state.calendar_event){
+      if(prevProps.eventsFromDatabase.length !== this.state.calendar_event.length){
+        this.setState({
+          calendar_event : prevProps.eventsFromDatabase
+        })
+      }
     }
+    return true
   }
+
+  // componentWillReceiveProps(nextProps){
+  //   if(nextProps.eventsFromDatabase !== undefined){
+  //     this.setState({
+  //       calendar_event : nextProps.eventsFromDatabase
+  //     })
+  //   }
+  // }
 
   shouldUpdate = (eventAdded) => {
     this.props.shouldUpdate(eventAdded)
   }
 
   render() {
-    console.log(this.state.calendar_event)
 
     const conditionalCreateEvent = this.state.isCreateEventOpen ?
     <CreateEvent
