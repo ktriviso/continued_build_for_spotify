@@ -45,14 +45,9 @@ export default class Calendar extends Component {
     })
     .then((response) => {
       console.log(response)
-      if(process.env.NODE_ENV !== 'development'){
-        return response
-      } else {
-        return response.json()
-      }
+      response.json()
     })
     .then((data) => {
-      console.log(data)
       this.setState({
           eventsFromDatabase: data
       })
