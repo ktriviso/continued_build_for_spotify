@@ -73,7 +73,6 @@ export default class SideBar extends Component {
       method: 'DELETE'
     })
     .then(res => {
-      console.log(res)
       if(res.status === 200) {
         this.props.shouldUpdate(true)
       }

@@ -43,7 +43,6 @@ export default class Day extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps)
     if(nextProps.eventsFromDatabase !== undefined){
       this.setState({
         calendar_event : nextProps.eventsFromDatabase
