@@ -44,10 +44,6 @@ export default class SideBar extends Component {
     })
   }
 
-  shouldUpdate = (eventAdded) => {
-    this.props.shouldUpdate(eventAdded)
-  }
-
   updateEvent = (e) => {
     e.preventDefault();
     fetch(`api/${this.state.passCurrentEventOnClick.event_id}`, {
@@ -79,7 +75,7 @@ export default class SideBar extends Component {
     .then(res => {
       console.log(res)
       if(res.status === 200) {
-        this.shouldUpdate(true)
+        this.props.shouldUpdate(true)
       }
     })
     .catch(err => {

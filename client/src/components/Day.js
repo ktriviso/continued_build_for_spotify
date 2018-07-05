@@ -36,7 +36,14 @@ export default class Day extends Component {
     this.setState({ isCreateEventOpen: false })
   }
 
+  componentWillMount(){
+    this.setState({
+      calendar_event : this.props.eventsFromDatabase
+    })
+  }
+
   componentWillReceiveProps(nextProps){
+    console.log(nextProps)
     if(nextProps.eventsFromDatabase !== undefined){
       this.setState({
         calendar_event : nextProps.eventsFromDatabase
@@ -49,6 +56,7 @@ export default class Day extends Component {
   }
 
   render() {
+    console.log(this.state.calendar_event)
 
     const conditionalCreateEvent = this.state.isCreateEventOpen ?
     <CreateEvent
