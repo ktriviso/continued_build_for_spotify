@@ -11,7 +11,8 @@ export default class SideBar extends Component {
       description: '',
       start: '',
       end: '',
-      viewEventForm: false
+      viewEventForm: false,
+      clearSideBar: false
     }
   }
 
@@ -69,7 +70,6 @@ export default class SideBar extends Component {
       this.props.shouldUpdate(false)
     })
 
-    this.closeForms(true)
   }
 
   removeEvent = () => {
@@ -86,20 +86,12 @@ export default class SideBar extends Component {
       console.log(err)
       this.shouldUpdate(false)
     })
-
-    this.closeForms(true)
   }
 
   changeForm = () => {
     this.setState({
       viewEventForm: true
     })
-  }
-
-  closeForms = (bool) => {
-    console.log(bool)
-    // this need to refresh the page
-    //when you edit a form it needs to show the update event, not the old one
   }
 
   viewEventForm = () => {
@@ -135,10 +127,10 @@ export default class SideBar extends Component {
     return (
       <div className="event-view">
         <form onSubmit={this.updateEvent}>
-          <input name="name" type="text" placeholder={this.state.currentEvent ? this.state.currentEvent.event_name : null}
+          <input name="name" type="text" placeholder={this.state.passCurrentEventOnClick ? this.state.passCurrentEventOnClick.event_name : null}
           onChange={this.name}/>
           <br/>
-          <input name="description" type="text" placeholder={this.state.currentEvent ? this.state.currentEvent.event_description : null}
+          <input name="description" type="text" placeholder={this.state.passCurrentEventOnClick ? this.state.passCurrentEventOnClick.event_description : null}
           onChange={this.description}/>
           <br/>
           <select value={this.state.start} onChange={this.start}>
@@ -180,8 +172,8 @@ export default class SideBar extends Component {
 
   render(){
 
-    const viewEventForm = !this.state.viewEventForm ? <this.viewEventForm /> : null
-    const editEventForm = this.state.viewEventForm ? <this.editEventForm /> : null
+    const viewEventForm = (!this.state.viewEventForm && !this.state.clearSideBar) ? <this.viewEventForm /> : null
+    const editEventForm = (this.state.viewEventForm && !this.state.clearSideBar) ? <this.editEventForm /> : null
 
     const events = this.props.eventsFromDatabase ? this.props.eventsFromDatabase.map((eve, i) => {
       return <li key={i} event_id={eve.event_id}>{eve.event_name}</li>
@@ -198,10 +190,12 @@ export default class SideBar extends Component {
         <div id="day-view">
           {day_events}
         </div>
-        <div className="sideBarHeader">View A Selected Event</div>
-        {viewEventForm}
-        {editEventForm}
-        <div className="sideBarHeader">Your Upcomming events</div>
+        <p className="sideBarHeader">View A Selected Event</p>
+        <div id="day-view">
+          {viewEventForm}
+          {editEventForm}
+        </div>
+        <p className="sideBarHeader">Your Upcomming events</p>
         <div id="event-list">
           {events}
         </div>
