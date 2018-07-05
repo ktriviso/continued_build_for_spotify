@@ -202,12 +202,12 @@ export default class Calendar extends Component {
           return (eve.event_date === i && eve.event_month === this.getCurrentMonth())
         })
         daysInMonth.push(
-          <Day className={className} key={i} index={i} eventsFromDatabase={dayEvents} shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} passCurrentEventOnClick={this.passCurrentEventOnClick} resetSideBar={this.resetSideBar}/>
+          <Day className={className} key={i} index={i} eventsFromDatabase={dayEvents} shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} passCurrentEventOnClick={this.passCurrentEventOnClick} />
         )
       } else {
         daysInMonth.push(
           <Day className={className} key={i} index={i} eventsFromDatabase={null}
-          shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} passCurrentEventOnClick={this.passCurrentEventOnClick} resetSideBar={this.resetSideBar}/>
+          shouldUpdate={this.shouldUpdate} currentMonth={this.getCurrentMonth()} passCurrentEventOnClick={this.passCurrentEventOnClick} />
         )
       }
     }
@@ -250,7 +250,7 @@ export default class Calendar extends Component {
     return (
       <div id="root" style={{backgroundImage: this.selectNewBackground}}>
 
-      <SideBar eventsFromDatabase={this.state.eventsFromDatabase} getCurrentDay={this.getCurrentDay()} passCurrentEventOnClick={this.state.passCurrentEventOnClick ? this.state.passCurrentEventOnClick : null} shouldUpdate={this.shouldUpdate} getCurrentMonth={this.getCurrentMonth()} />
+      <SideBar eventsFromDatabase={this.state.eventsFromDatabase} getCurrentDay={this.getCurrentDay()} passCurrentEventOnClick={this.state.passCurrentEventOnClick ? this.state.passCurrentEventOnClick : null} shouldUpdate={this.shouldUpdate} getCurrentMonth={this.getCurrentMonth()} clearSideBar={this.state.clearSideBar} />
 
       <div id="container">
 

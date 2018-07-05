@@ -66,6 +66,10 @@ export default class SideBar extends Component {
       this.props.shouldUpdate(false)
     })
 
+    this.setState({
+      viewEventForm: false
+    })
+
   }
 
   removeEvent = () => {
@@ -81,6 +85,11 @@ export default class SideBar extends Component {
       console.log(err)
       this.shouldUpdate(false)
     })
+
+    // this.setState({
+    //   viewEventForm: true,
+    //   clearSideBar: true
+    // })
   }
 
   changeForm = () => {
