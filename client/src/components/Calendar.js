@@ -43,8 +43,16 @@ export default class Calendar extends Component {
       method: 'GET',
       headers: {'Content-Type': 'application/json'}
     })
-    .then((response) => response.json())
+    .then((response) => {
+      console.log(response)
+      if(process.env.NODE_ENV !== 'development'){
+        return response
+      } else {
+        return response.json()
+      }
+    })
     .then((data) => {
+      console.log(data)
       this.setState({
           eventsFromDatabase: data
       })
