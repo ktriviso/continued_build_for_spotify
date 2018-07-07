@@ -19,17 +19,13 @@ export default class Day extends Component {
 
   viewEvent = (e) => {
     e.preventDefault()
-    let targetEvent = this.state.calendar_event.find((eve) => {
+    this.state.calendar_event.find((eve) => {
       // radix err: set the defualt to 10 https://stackoverflow.com/questions/7818903/jslint-says-missing-radix-parameter-what-should-i-do
       if(parseInt(e.target.getAttribute('event_id'), 10) === eve.event_id){
-        return eve
+        this.props.passCurrentEventOnClick(eve)
       }
-      return null
     })
-    this.setState({
-      currentEvent: targetEvent
-    })
-    this.props.passCurrentEventOnClick(targetEvent)
+
   }
 
   closeCreateEvent = () => {

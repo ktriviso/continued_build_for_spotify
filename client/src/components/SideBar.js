@@ -11,12 +11,15 @@ export default class SideBar extends Component {
       description: '',
       start: '',
       end: '',
-      viewEventForm: false,
-      clearSideBar: false
+      toggleSideBar: true
     }
   }
 
   componentWillReceiveProps(nextProps){
+    this.setState({
+      toggleSideBar: !this.state.toggleSideBar
+    })
+    this.state.toggleSideBar ? this.setState({activeComponent: 'viewEventForm'}) : null
     if(nextProps.eventsFromDatabase){
       const arr = []
       nextProps.eventsFromDatabase.map((eve) => {
@@ -40,7 +43,8 @@ export default class SideBar extends Component {
     }
 
     this.setState({
-      hours: hoursArray
+      hours: hoursArray,
+      activeComponent: 'clearedForms'
     })
   }
 
@@ -67,9 +71,8 @@ export default class SideBar extends Component {
     })
 
     this.setState({
-      viewEventForm: false
+      activeComponent: 'clearedForms'
     })
-
   }
 
   removeEvent = () => {
@@ -86,15 +89,14 @@ export default class SideBar extends Component {
       this.shouldUpdate(false)
     })
 
-    // this.setState({
-    //   viewEventForm: true,
-    //   clearSideBar: true
-    // })
+    this.setState({
+      activeComponent: 'clearedForms'
+    })
   }
 
   changeForm = () => {
     this.setState({
-      viewEventForm: true
+      activeComponent: 'editEventForm'
     })
   }
 
@@ -116,8 +118,8 @@ export default class SideBar extends Component {
         <li>
           {this.state.passCurrentEventOnClick ? `End Time: ${this.state.passCurrentEventOnClick.end_time}` : null}
         </li>
-        <li className="icon-edit" onClick={this.changeForm}>
-          {this.state.passCurrentEventOnClick ? <i className="fas fa-pencil-alt inline-icon"></i> : null}
+        <li className="icon-edit">
+          {this.state.passCurrentEventOnClick ? <i onClick={this.changeForm} className="fas fa-pencil-alt inline-icon"></i> : null}
         </li>
         <li className="icon-edit">
           {this.state.passCurrentEventOnClick ? <i onClick={this.removeEvent} className="far fa-trash-alt"></i> : null}
@@ -170,14 +172,15 @@ export default class SideBar extends Component {
 
   closeEditForm = () => {
     this.setState({
-      viewEventForm: false
+      activeComponent: 'clearedForms'
     })
   }
 
   render(){
 
-    const viewEventForm = (!this.state.viewEventForm && !this.state.clearSideBar) ? <this.viewEventForm /> : null
-    const editEventForm = (this.state.viewEventForm && !this.state.clearSideBar) ? <this.editEventForm /> : null
+    const viewEventForm = (this.state.activeComponent === 'viewEventForm') ? <this.viewEventForm /> : null
+    const editEventForm = (this.state.activeComponent === 'editEventForm') ? <this.editEventForm /> : null
+    const clearedForms = (this.state.activeComponent === 'clearedForms') ? <div></div> : null
 
     const events = this.props.eventsFromDatabase ? this.props.eventsFromDatabase.map((eve, i) => {
       return <li key={i} event_id={eve.event_id}>{eve.event_name}</li>
@@ -198,6 +201,7 @@ export default class SideBar extends Component {
         <div id="day-view">
           {viewEventForm}
           {editEventForm}
+          {clearedForms}
         </div>
         <p className="sideBarHeader">Your Upcomming events</p>
         <div id="event-list">
