@@ -23,8 +23,7 @@ export default class Calendar extends Component {
       weekdays: moment.weekdays(),
       weekdaysShort: moment.weekdaysShort(),
       months: moment.months(),
-      showMonthList: false,
-      updateFormInSideBar: false
+      showMonthList: false
     }
   }
 
@@ -172,6 +171,7 @@ export default class Calendar extends Component {
     root.style.backgroundImage = `url(${backgroundImage})`
   }
 
+
   render() {
 
     // how many blanks to leave in the begining of the month
@@ -250,7 +250,7 @@ export default class Calendar extends Component {
     return (
       <div id="root" style={{backgroundImage: this.selectNewBackground}}>
 
-      <SideBar eventsFromDatabase={this.state.eventsFromDatabase} getCurrentDay={this.getCurrentDay()} passCurrentEventOnClick={this.state.passCurrentEventOnClick ? this.state.passCurrentEventOnClick : null} shouldUpdate={this.shouldUpdate} getCurrentMonth={this.getCurrentMonth()} clearSideBar={this.state.clearSideBar} updateFormInSideBar={this.state.updateFormInSideBar}/>
+      <SideBar eventsFromDatabase={this.state.eventsFromDatabase} getCurrentDay={this.getCurrentDay()} passCurrentEventOnClick={this.state.passCurrentEventOnClick ? this.state.passCurrentEventOnClick : null} shouldUpdate={this.shouldUpdate} getCurrentMonth={this.getCurrentMonth()} clearSideBar={this.state.clearSideBar} />
 
       <div id="container">
 
